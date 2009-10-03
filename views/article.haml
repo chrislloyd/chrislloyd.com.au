@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title The Lincolnshire Poacher
+  %body
+    #header
+      %h1
+        The Lincolnshire Poacher
+        %span.credit by Chris Lloyd
+    .article
+      %h2= @article.title
+      %p= @article.tumblr
+      %p= @article.slug
+      = @article.to_html
