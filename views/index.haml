@@ -10,7 +10,5 @@
     #articles
       - @articles.each do |article|
         .article
-          %h2= article.title
-          %p= article.tumblr
-          %p= article.slug
+          %h1= article.title
           = article.to_html

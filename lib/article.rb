@@ -12,8 +12,12 @@ class Article
     files.collect {|f| new(f, File.read(f)) }
   end
 
+  def self.recent
+    all.sort_by {|a| a.published }.reverse
+  end
+
   def self.find_from_tumblr(tumblr, slug)
-    all.find {|p| p.slug == slug && p.tumblr == tumblr }
+    all.find {|a| a.slug == slug && a.tumblr == tumblr }
   end
 
   def self.[](slug)
@@ -45,14 +49,14 @@ class Article
     published <=> other.published
   end
 
-private
+# private
 
   def self.date_regexp
     /(\d+)-(\d+)-(\d+)\s(\d+):(\d+)/
   end
 
   def slot(name)
-    template[/^<!--\s*#{name}:\s*(\S*)\s*-->$/, 1]
+    template[/^<!--\s*#{name}:\s*(.*)\s*-->$/, 1].strip
   end
 
 end

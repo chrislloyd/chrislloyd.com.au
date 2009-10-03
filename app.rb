@@ -9,7 +9,7 @@ helpers do
 end
 
 get '/' do
-  @articles = Article.all
+  @articles = Article.recent
   haml :index
 end
 
