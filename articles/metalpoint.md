@@ -2,9 +2,11 @@
 <!-- published: 2009-06-8 10:00 -->
 <!-- tumblr: 119900228 -->
 
-A tool to help draw and compose vector images in SVG and VML.
+<div class="figure">
+  <img src="/images/metalpoint.png" alt="Metalpoint" />
+</div>
 
-![Metalpoint](http://farm4.static.flickr.com/3612/3607268332_580d4250d1_o.png)
+A tool to help draw and compose vector images in SVG and VML.
 
 Think Illustrator or Inkscape except that it's purely in the brower. At the moment you can only edit points and move shapes around, but that's fucking cool in itself. The technology is based on Dmitry's [Raphaël](http://raphaeljs.com), so it works in all major browsers. My longer term goals (subject to your interest) are:
 

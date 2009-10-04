@@ -5,7 +5,7 @@
 I originally wrote [Gravtastic](http://github.com/chrislloyd/gravtastic), a library for using the  Gravatar API, to learn a bit about Ruby and how to publish gems. It was a fun project which I did during my exams in 2007. The project has a few people watching it on Github so it is the best public representation of my abilities (other than my [proposed enhancement](https://rails.lighthouseapp.com/projects/8994/tickets/1556-teapot-http-status-code-missing) to Rails). I looked back on it the other day and it struck me just _how much I had learnt_ in the last few years. None of my code was _bad_, but I've been living and breathing binary since late 2008 and my opinion about _everything_ has changed. Hang on, who am I trying to protect? The code was bad and here is what I learnt from re-writing it.
 
 
-### Lesson 1: _Results_
+## Lesson 1: _Results_
 
 Firstly, the spec suite was massive. It was disgusting to work with. Sitting down to some refactoring I made one little change and three tests broke (all for unrelated features). The library still _functioned_ correctly, but the specs were too closely coupled to its internals. To fix this, I went through and made specs that only tested the _result_, not the _implementation_. To help choose what features to cover with the specs, I singled out methods that were more than [4 lines long](http://books.google.com/books?id=Y7FwNB4GV4EC&pg=PA242&lpg=PA242source=bl&ots=BVjAj2L6mA&sig=WznhkkJZnwweSVN0824apXtFHDU&hl=en&ei=kJQtSpPdNYaTkAWorZnwCg&sa=X&oi=book_result&ct=result&resnum=4#PPA242,M1). Anything less than that, really, can probably be tested by inspection. In an ideal world, your software should be so simple that you know it works just by looking at it.
 
@@ -35,7 +35,7 @@ end</code></pre>
 It was actually better just to ignore the perfectness of the tests and go with testing the outcomes that I cared about. This process had the added bonus of also making the specs a readable source of documentation.
 
 
-### Lesson 2: _Power_
+## Lesson 2: _Power_
 
 The code had prided itself on being strict: every option passed to the `#gravatar_url` method was checked and any invalid keys thrown out. This, however is the wrong way to approach software. If you are designing a system to be used by others, it needs to be as open as possible.
 
@@ -44,12 +44,14 @@ Let's say, for example, that Gravatar brings out some new feature which is activ
 I know there will be the people who think "what about developers who don't test"? Fuck them. If they are not testing the code they write and don't pick up on a poorly passed parameter, then their app should blow up. I'm not going to sacrifice power and flexibility to fix the mistakes of a minority. I guess this is why I prefer dynamic languages.
 
 
-### Lesson 3: _Marketing_
+## Lesson 3: _Marketing_
+
+<div class="figure">
+  <a href="http://upload.wikimedia.org/wikipedia/commons/5/5f/Louis_XIV_of_France.jpg" title="Hyacinthe Rigaud's \"Louis XIV\" (1701)"><img src="/images/rigaud-louis-xiv.jpg" alt="Hyacinthe Rigaud's \"Louis XIV\" (1701)" /></a>
+  <div class="caption">Rigaud's "Louis XIV" (1701) — An <a href="http://www.stetson.edu/~psteeves/classes/louisxiv.html">absolutist ruler</a>.</div>
+</div>
 
 As I mentioned before, the last thing I want to be doing is maintaining software like Gravtastic and supporting its users. Yeah, I'm lazy. I spend all day surfing StackOverflow. Until, that is, when I saw [a question](http://stackoverflow.com/questions/770876/how-do-i-add-gravatar-identicons-into-ruby-on-rails) from somebody who couldn't use Gravtastic because the README was confusing. I love the ego trip of somebody discussing my library, however they were discussing how they couldn't use it. Part of me says "screw them, if they can't figure out the README, then they probably shouldn't be using the software". At the same time, I'd like to make software that will actually be used (I don't want to be absolutist). That's the reason I released it in the first place and the whole point of open source software. So I decided to help.
-
-![Hyacinthe Rigaud's "Louis XIV" (1701)](http://farm4.static.flickr.com/3358/3627598503_022f8a180b_o.png)
-<div class="caption">Rigaud's "Louis XIV" (1701) &mdash; An <a href="http://www.stetson.edu/~psteeves/classes/louisxiv.html">absolutist ruler</a>.</div>
 
 When I looked at it, the README _was_ atrocious. I'm the only person who could have understood it. The main problem was that it wasn't targeted at the correct audience. In the end, I spent more time rewriting the damned README than coding. Version 2.1 of Gravtastic is more an update in it's marketing than anything else.
 

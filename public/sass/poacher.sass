@@ -1,0 +1,112 @@
+=font-file(!name, !file)
+  font-family = !name
+  src = url("'#{!file}.eot'")
+  src = local(!name), url("'#{!file}.otf'") format("'opentype'")
+
+@font-face
+  +font-file("'Chaparral Pro'", "/fonts/ChaparralPro-Regular")
+
+@font-face
+  +font-file("'Chaparral Pro'", "/fonts/ChaparralPro-Italic")
+  font-style: italic
+
+!gutter = 10px
+!width = 700px
+
+=centify
+  width = !width
+  padding: 0 10px
+  margin:
+    left: auto
+    right: auto
+
+!sig_colour = #699
+
+
+body
+  font-size: 62.5%
+  line-height: 2em
+
+#header
+  height: 220px
+  // background-color: #FFC
+
+  .title
+    +centify
+    padding-top: 40px
+
+  h1
+    font-family: 'Chaparral Pro'
+    -webkit-text-stroke: 1px transparent
+    line-height: 40px
+    font-size: 1.6em
+    color = !sig_colour + #333
+    text-transform: uppercase
+    font-style: italic
+
+    a
+      font-size: 1.5em
+      padding-right = !gutter
+      color = !sig_colour
+      text-decoration: none
+      text-transform: none
+      font-style: normal
+
+.article
+  +centify
+  margin-top: -120px
+  margin-bottom: 200px
+  font-size: 1.4em
+  color: #333
+
+  h1
+    font-family: 'Chaparral Pro'
+    font-size: 48px
+    font-style: italic
+    padding: 40px 0
+    line-height: 40px
+    a
+      color: #000
+      text-decoration: none
+
+.content
+  width: 400px
+
+  p + p
+    text-indent = 2 * !gutter
+
+  a
+    color = !sig_colour
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
+  h2
+    font-family: 'Chaparral Pro'
+    margin = (2 * !gutter) 0
+    font-size: 1.5em
+    line-height: 40px
+
+  ul,ol
+    margin = !gutter 0
+
+  ol
+    list-style: decimal
+
+  ul
+    list-style: disc
+
+  .figure
+    width: 280px
+    float: right
+    margin-right: -300px
+
+    &.wide
+      float: none
+      margin = !gutter 0
+      width = !width
+
+    .caption
+      margin = !gutter 0
+      font-size: 0.857142857142857em
+      color: #666

@@ -1,8 +1,8 @@
-<!-- title: Databases are for Pussies -->
+<!-- title: &ldquo;Databases are for Pussies&rdquo; -->
 <!-- published: 2009-08-03 10:00 -->
 <!-- tumblr: 154530835 -->
 
-<small>&mdash; a direct quote from [Myles Byrne](http://whatwouldmylesdo.com).</small>
+<small>— from [Myles Byrne](http://whatwouldmylesdo.com).</small>
 
 Phil Karlton is quoted as saying: 'There are only two hard things in Computer Science: cache invalidation and naming things.' You'd think that because I'm a programmer studying Computer Science (I love the capitals!), that would make me a Computer Scientist. That misconception only occurred to me recently. 99% of programmers out there aren't Computer Scientists. Therefore, I'd propose the two hardest things in _programming_ are not cache invalidation and naming, but business and interfaces. I'm not going to talk about why I think business is so hard for programmers now: that point, I think, should be fairly obvious. I'm adamant, though, that interfaces are the other most important thing for programmers.
 
@@ -14,12 +14,14 @@ Beginning a project with the UI (or "rapid prototyping") is also an enormous bus
 
 ## Tyrone
 
-![Tyrone](/images/figures/tyrone-logo.png)
+<div class="figure">
+  <img src="/images/tyrone.jpg" alt="Tyrone" />
+</div>
 
 That is where [Tyrone](http://github.com/chrislloyd/tyrone) comes in. Tyrone is a code generator and library designed to help you get up and running designing UI mockups as quickly as possible. It's meant to motivate you to start your projects designing interactions rather than pushing code and making ORMs. Also, by using Sinatra, Tyrone can quickly help you create stuff like semi-dynamic JSON and then move onto a larger Rails project when it's needed. Just use the `tyrone` command to get started:
 
-    {gem,rip} install tyrone
-    tyrone my-new-app
+<pre><code>{gem,rip} install tyrone
+tyrone my-new-app</code></pre>
 
 It works just like the `rails` command (but better, I'll come to that later). This creates a new project with a skeleton Sinatra app and a few Javascript files. All bundled up nicely for instant deployment to [Heroku](http://heroku.com). You can then start by adding files to the `mockups` directory. Easy peasy.
 
@@ -39,7 +41,9 @@ Oh, and the name comes from [Tyrone's Dog Babysitting Service ](http://dontevenr
 
 ## And Now for a Rant
 
-![Pixii](/images/figures/pixii-logo.png)
+<div class="figure">
+  <img src="/images/pixii.png" alt="Pixii" />
+</div>
 
 I looked at using Rubigen for Tyrone's generator. Firstly, and I'm sorry Dr. Nic, but it has [shocking documentation](http://github.com/drnic/rubigen/blob/master/README.rdoc). Scroll to the bottom of the README. Where's the information on how to create a component generator? It's also so abstracted it expects you to have 5 bazillion generators each with 1 gahundred-thousand templates. The real stinker, however, is [the code](http://github.com/drnic/rubigen/blob/master/lib/rubigen/lookup.rb).
 

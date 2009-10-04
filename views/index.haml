@@ -1,14 +1,3 @@
-!!!
-%html
-  %head
-    %title The Lincolnshire Poacher
-  %body
-    #header
-      %h1
-        The Lincolnshire Poacher
-        %span.credit by Chris Lloyd
-    #articles
-      - @articles.each do |article|
-        .article
-          %h1= article.title
-          = article.to_html
+#articles
+  - @articles.each do |article|
+    != partial :article, :article => article

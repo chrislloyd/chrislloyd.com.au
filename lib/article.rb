@@ -30,6 +30,10 @@ class Article
     @path, @template = path, contents
   end
 
+  def id
+    slug
+  end
+
   def to_html
     Markdown.new(template).to_html
   end

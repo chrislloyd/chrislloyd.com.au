@@ -1,0 +1,5 @@
+%div[article]
+  %h1
+    %a{:href => article_path(article)}= article.title
+  .content
+    = article.to_html

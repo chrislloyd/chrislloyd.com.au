@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title The Lincolnshire Poacher
+    %link{:href => '/css/reset.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => '/css/poacher.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+  %body
+    #header
+      .title
+        %h1
+          %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
+          by Chris Lloyd
+    = yield
+
+    %script{:src => '/js/codehighlighter.js', :type => 'text/javascript'}

@@ -2,8 +2,11 @@
 <!-- published: 2009-7-15 10:00 -->
 <!-- tumblr: 141718757 -->
 
-[![Millais' "Blind Girl" (1856)](http://farm4.static.flickr.com/3343/3631232655_c93de649de_o.png)](http://upload.wikimedia.org/wikipedia/commons/e/e8/Millais-Blind_Girl.jpg)
-<div class="caption">Millais' "Blind Girl" (1856) &mdash; A blind girl enjoys the sun's warmth, oblivious to the approaching storm.</div>
+<div class="figure">
+  <a href="http://upload.wikimedia.org/wikipedia/commons/e/e8/Millais-Blind_Girl.jpg" title="Millais' \"Blind Girl\" (1856)"><img src="/images/millais-blind-girl.jpg" alt="Millais' \"Blind Girl\" (1856)" /></a>
+  <div class="caption">Millais' "Blind Girl" (1856) — A blind girl enjoys the sun's warmth, oblivious to the approaching storm.</div>
+</div>
+
 
 I love this picture. You should go have a [look at it large](http://upload.wikimedia.org/wikipedia/commons/e/e8/Millais-Blind_Girl.jpg). Millais was one of the founders of the Pre-Raphaelites, a group who believed that taking a classical approach to art was bullshit. Casting aside brilliant colours and chiselled six-packs, they drew women in awkward compositions with dirty dresses truthfully depicting nature. *Blind Girl* is great because it strikes me as so genuine. The detail of the blind girls hand, gently touching the grass really conveys the warmth of the Sun too. It's one of those serene moments where nothing else matters except the present.
 
@@ -13,11 +16,11 @@ My latest hobby, however, has been knocking that whirling candy right out of my 
 
 But back to the regular programming. We constantly create unrealistic scenarios that *could* happen in the future. Take, for instance, the problem of including a specific version of a library in Ruby. A common Ruby idiom is to do so like this:
 
-    { 'activesupport' => '2.3.2',
-      'activerecord'  => '2.3.2',
-      'sinatra'       => '0.9.2',
-      'fancypath'     => '0.5.12'
-    }.each{|g,v| gem(g,v); require(g)}
+<pre><code class="ruby">{ 'activesupport' => '2.3.2',
+  'activerecord'  => '2.3.2',
+  'sinatra'       => '0.9.2',
+  'fancypath'     => '0.5.12'
+}.each{|g,v| gem(g,v); require(g)}</code></pre>
 
 rather than to explicitly requiring each Gem. For the most part this is a good solution to the original problem. However, in the case where the Gem name is different to the library name (like the `openrain-action_mailer_tls`) this solution doesn't work. Rather than just requiring each Gem by hand I created an imaginary situation where there would be so many gems I would require a shorthand to require them. By trying to predict the future I missed the edge case of Gem's with mismatched names. This is a pretty trivial example, but the point I'm trying to distil here is that you cannot predict the future, so don't bother trying.
 
