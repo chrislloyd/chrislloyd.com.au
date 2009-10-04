@@ -35,7 +35,7 @@ class Article
   end
 
   def to_html
-    Markdown.new(template).to_html
+    RDiscount.new(template).to_html
   end
 
   def slug

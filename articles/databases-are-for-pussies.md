@@ -2,7 +2,7 @@
 <!-- published: 2009-08-03 10:00 -->
 <!-- tumblr: 154530835 -->
 
-<small>— from [Myles Byrne](http://whatwouldmylesdo.com).</small>
+<small>&mdash; from [Myles Byrne](http://whatwouldmylesdo.com).</small>
 
 Phil Karlton is quoted as saying: 'There are only two hard things in Computer Science: cache invalidation and naming things.' You'd think that because I'm a programmer studying Computer Science (I love the capitals!), that would make me a Computer Scientist. That misconception only occurred to me recently. 99% of programmers out there aren't Computer Scientists. Therefore, I'd propose the two hardest things in _programming_ are not cache invalidation and naming, but business and interfaces. I'm not going to talk about why I think business is so hard for programmers now: that point, I think, should be fairly obvious. I'm adamant, though, that interfaces are the other most important thing for programmers.
 

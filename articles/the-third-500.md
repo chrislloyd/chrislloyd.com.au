@@ -6,7 +6,7 @@ When I used to row in high school, we always talked about the dreaded "third 500
 
 <div class="figure wide">
   <img src="/images/head-of-the-river.jpg" alt="I'm the pale one, second from the right" />
-  <div class="caption">Head of the River, 2004 — I'm second from the right, and pale.</div>
+  <div class="caption">Head of the River, 2004 &mdash; I'm second from the right, and pale.</div>
 </div>
 
 But those weren't the hardest bit of the race. That was always the third 500. By then, the lactic acid had truly set in and your arms and legs are on fire. Most good crews make their move then, because this is a time when they can be _psychologically stronger_ than everybody else. Rowing was not so much about being strong and fit (of which I was neither), it was about overcoming every instinct telling you to _stop tugging on that oar_. And the third 500 was the killer.
