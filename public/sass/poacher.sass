@@ -26,23 +26,30 @@
 body
   font-size: 62.5%
   line-height: 2em
+  min-width: 900px
 
 #header
   height: 220px
-  // background-color: #FFC
-
-  .title
-    +centify
-    padding-top: 40px
+  position: relative
+  width: 900px
+  margin: 0 auto
 
   h1
+    !pad = 5px
+    position: absolute
+    top: 40px
+    left = 100px - !pad
+
     font-family: 'Chaparral Pro'
     -webkit-text-stroke: 1px transparent
-    line-height: 40px
+    height: 20px
+    padding: 5px
     font-size: 1.6em
     color = !sig_colour + #333
     text-transform: uppercase
     font-style: italic
+    font-weight: normal
+    background: white
 
     a
       font-size: 1.5em
@@ -63,6 +70,7 @@ body
     font-family: 'Chaparral Pro'
     font-size: 48px
     font-style: italic
+    font-weight: normal
     padding: 40px 0
     line-height: 40px
     a
@@ -84,8 +92,9 @@ body
   h2
     font-family: 'Chaparral Pro'
     margin = (2 * !gutter) 0
-    font-size: 1.5em
+    font-size: 1.75em
     line-height: 40px
+    font-weight: normal
 
   ul,ol
     margin = !gutter 0
@@ -113,3 +122,13 @@ body
       margin = !gutter 0
       font-size: 0.857142857142857em
       color: #666
+
+#artwork
+  padding-top: 5px
+  .box
+    background = !sig_colour + #663
+    width: 40px
+    height: 10px
+    margin: 5px 10px
+    float: left
+

@@ -8,7 +8,7 @@
 
 A tool to help draw and compose vector images in SVG and VML.
 
-Think Illustrator or Inkscape except that it's purely in the brower. At the moment you can only edit points and move shapes around, but that's fucking cool in itself. The technology is based on Dmitry's [Raphaël](http://raphaeljs.com), so it works in all major browsers. My longer term goals (subject to your interest) are:
+Think Illustrator or Inkscape except that it's purely in the brower. At the moment you can only edit points and move shapes around, but that's fucking cool in itself. The technology is based on Dmitry's [Rapha&euml;l](http://raphaeljs.com), so it works in all major browsers. My longer term goals (subject to your interest) are:
 
 * Animation. It'll be really easy doing frame based animation but I want to get the actual editing a little usable first.
 * Host it. Perhaps have accounts for save/export features, not sure yet.

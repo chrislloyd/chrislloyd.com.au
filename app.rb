@@ -4,6 +4,12 @@ require 'lib/article'
 
 Article.path = 'articles'
 
+class Object
+  def try(method)
+    send method if respond_to? method
+  end
+end
+
 helpers do
   def hidden
     {:style => 'display:none;'}
@@ -13,6 +19,14 @@ helpers do
   end
   def partial(name, locals={})
     haml "_#{name}".to_sym, :layout => false, :locals => locals
+  end
+  def absoluteify_links(html)
+    html.
+      gsub(/href=(["'])(\/.*?)(["'])/, 'href=\1http://thelincolnshirepoacher.com\2\3').
+      gsub(/src=(["'])(\/.*?)(["'])/, 'src=\1http://thelincolnshirepoacher.com\2\3')
+  end
+  def strip_tags(html)
+    html.gsub(/<\/?[^>]*>/, '')
   end
 end
 
@@ -32,6 +46,18 @@ get '/post/:tumblr/:slug' do |tumblr, slug|
   else
     pass
   end
+end
+
+get '/feed.atom' do
+  @articles = Article.recent
+  content_type 'application/atom+xml'
+  haml :feed, :layout => false
+end
+
+get '/sitemap.xml' do
+  @articles = Article.recent
+  content_type 'application/xml'
+  haml :sitemap, :layout => false
 end
 
 get /^\/css\/(.+)\.css/ do |style_file|

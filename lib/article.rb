@@ -35,7 +35,7 @@ class Article
   end
 
   def to_html
-    RDiscount.new(template).to_html
+    Markdown.new(template, :smart, :fold_lines).to_html.gsub(self.class.comment_regexp,'')
   end
 
   def slug
@@ -45,8 +45,12 @@ class Article
   def title; slot(:title); end
   def tumblr; slot(:tumblr); end
 
-  def published
-    Time.local(*slot(:published).match(self.class.date_regexp).to_a[1..-1])
+  [:published, :updated].each do |stamp|
+    define_method(stamp) do
+      if time = slot(stamp)
+        Time.local(*time.match(self.class.date_regexp).to_a[1..-1])
+      end
+    end
   end
 
   def <=>(other)
@@ -59,8 +63,12 @@ class Article
     /(\d+)-(\d+)-(\d+)\s(\d+):(\d+)/
   end
 
+  def self.comment_regexp
+    /\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/
+  end
+
   def slot(name)
-    template[/^<!--\s*#{name}:\s*(.*)\s*-->$/, 1].strip
+    template[/^<!--\s*#{name}:\s*(.*)\s*-->$/, 1].try(:strip)
   end
 
 end

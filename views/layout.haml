@@ -6,10 +6,12 @@
     %link{:href => '/css/poacher.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
   %body
     #header
-      .title
-        %h1
-          %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
-          by Chris Lloyd
+      %h1
+        %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
+        by Chris Lloyd
+      #artwork
     = yield
 
     %script{:src => '/js/codehighlighter.js', :type => 'text/javascript'}
+    %script{:src => '/js/jquery.js', :type => 'text/javascript'}
+    %script{:src => '/js/poacher.js', :type => 'text/javascript'}
