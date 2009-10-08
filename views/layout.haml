@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title The Lincolnshire Poacher
+    %title= article_title
     %link{:href => '/css/reset.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => '/css/poacher.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
   %body
@@ -9,7 +9,14 @@
       %h1
         %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
         by Chris Lloyd
+      #nav
+        %a.past{:href => '#'} Contents
+      %ol#past{hidden}
+        - for article in Article.recent
+          %li{:class => (current_article?(article) ? 'current' : '')}
+            %a{:href => article_path(article)}= article.title
       #artwork
+
     = yield
 
     %script{:src => '/js/codehighlighter.js', :type => 'text/javascript'}

@@ -10,6 +10,9 @@
   +font-file("'Chaparral Pro'", "/fonts/ChaparralPro-Italic")
   font-style: italic
 
+@font-face
+  +font-file("'Inconsolata'", "/fonts/Inconsolata")
+
 !gutter = 10px
 !width = 700px
 
@@ -20,32 +23,27 @@
     left: auto
     right: auto
 
-!sig_colour = #699
+!sig_colour = #9C6
 
 
 body
   font-size: 62.5%
   line-height: 2em
-  min-width: 900px
+  min-width: 720px
 
 #header
   height: 220px
   position: relative
-  width: 900px
+  width: 720px
   margin: 0 auto
 
   h1
-    !pad = 5px
+    margin: -3px 5px 0 5px
     position: absolute
     top: 40px
-    left = 100px - !pad
-
     font-family: 'Chaparral Pro'
-    -webkit-text-stroke: 1px transparent
-    height: 20px
-    padding: 5px
     font-size: 1.6em
-    color = !sig_colour + #333
+    color = #CCC
     text-transform: uppercase
     font-style: italic
     font-weight: normal
@@ -53,13 +51,72 @@ body
 
     a
       font-size: 1.5em
-      padding-right = !gutter
-      color = !sig_colour
+      padding = 5px (!gutter /2) 1px (!gutter /2)
+      margin-right = 2*!gutter
       text-decoration: none
-      text-transform: none
       font-style: normal
+      background = !sig_colour
+      color: #FFF
+      text-shadow = (!sig_colour - #333) 0 1px 1px
+      &:hover
+        color = !sig_colour + #333
+
+  #nav
+    position: absolute
+    right: 0
+    top: 38px
+    line-height: 10px
+    font-family: 'Chaparral Pro'
+    font-size: 14px
+
+    a
+      margin: 0 10px
+      padding: 7px 5px 3px 5px
+      text-decoration: none
+      color: #999
+      float: left
+      font-family: 'Chaparral Pro'
+      font-style: italic
+      text-transform: uppercase
+      &:hover
+        color: #666
+        background-color: #E5E5E5
+      &.active
+        background-color = !sig_colour
+        color: #FFF
+        text-shadow = (!sig_colour - #333) 0 1px 1px
+
+  #past
+    top: 58px
+    right: 0
+    width: 150px
+    // text-align: right
+    background = !sig_colour + #111
+    color: #FFF
+    border = 2px "solid" !sig_colour
+    position: absolute
+    margin: 0 10px
+    z-index: 10
+    a
+      font-size: 11px
+      padding: 5px 3px
+      color: #FFF
+      text-decoration: none
+      font-family: Helvetica, Arial, sans-serif
+      text-shadow = (!sig_colour - #222) 0 1px 1px
+      display: block
+      line-height: 16px
+
+      &:hover
+        background = !sig_colour
+        text-shadow = (!sig_colour - #333) 0 1px 1px
+    .current
+      background = !sig_colour
+      font-weight: bold
+      text-shadow = (!sig_colour - #333) 0 1px 1px
 
 .article
+  position: relative
   +centify
   margin-top: -120px
   margin-bottom: 200px
@@ -86,6 +143,7 @@ body
   a
     color = !sig_colour
     text-decoration: none
+    white-space: nowrap
     &:hover
       text-decoration: underline
 
@@ -101,6 +159,10 @@ body
 
   pre
     margin = !gutter 0
+
+  code
+    font-size: 110%
+    font-family: Inconsolata
 
   ol
     list-style: decimal
@@ -132,3 +194,15 @@ body
     margin: 5px 10px
     float: left
 
+
+.ruby
+  .comment
+    color: #999
+  .string
+    color: #409b1c
+  .keywords
+    color: #ff7800
+  .entity
+    color: #3b5bb5
+  .variable
+    color: #999

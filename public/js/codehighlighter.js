@@ -258,10 +258,13 @@ CodeHighlighter.addStyle("ruby",{
     exp  : /'[^']*'|"[^"]*"/
   },
   keywords : {
-    exp  : /\b(do|end|self|class|def|if|module|yield|then|else|for|until|unless|while|elsif|case|when|break|retry|redo|rescue|require|raise)\b/
+    exp  : /\b(do|end|self|class|def|if|module|yield|then|else|for|until|unless|while|elsif|case|when|break|retry|redo|rescue|require|raise|gem|==)\b/
   },
   /* Added by Shelly Fisher (shelly@agileevolved.com) */
-  symbol : {
+  entity : {
     exp : /([^:])(:[A-Za-z0-9_!?]+)/
+  },
+  variable : {
+    exp : /@[A-Za-z0-9_!?]+/
   }
 });

@@ -5,11 +5,11 @@ class Article
   end
 
   def self.files
-    Dir["#{File.expand_path(@path)}/*.md"]
+    Dir["#{File.expand_path(@path)}/*.haml"]
   end
 
   def self.all
-    files.collect {|f| new(f, File.read(f)) }
+    @all ||= files.collect {|f| new(f, File.read(f)) }
   end
 
   def self.recent
@@ -34,16 +34,13 @@ class Article
     slug
   end
 
-  def to_html
-    Markdown.new(template, :smart, :fold_lines).to_html.gsub(self.class.comment_regexp,'')
-  end
-
   def slug
-    File.basename(self.path, '.md')
+    File.basename(self.path, '.*')
   end
 
-  def title; slot(:title); end
-  def tumblr; slot(:tumblr); end
+  [:title, :tumblr, :type].each do |attr|
+    define_method(attr) { slot(attr) }
+  end
 
   [:published, :updated].each do |stamp|
     define_method(stamp) do
@@ -57,6 +54,9 @@ class Article
     published <=> other.published
   end
 
+  def previous; self; end
+  def next; self; end
+
 # private
 
   def self.date_regexp
@@ -68,7 +68,7 @@ class Article
   end
 
   def slot(name)
-    template[/^<!--\s*#{name}:\s*(.*)\s*-->$/, 1].try(:strip)
+    template[/^-#\s+#{name}:\s*(.*)$/, 1].try(:strip)
   end
 
 end

@@ -28,10 +28,19 @@ helpers do
   def strip_tags(html)
     html.gsub(/<\/?[^>]*>/, '')
   end
+  def render_article(article)
+    haml(article.template, :layout => false)
+  end
+  def current_article?(article)
+    @article == article
+  end
+  def article_title
+    [@article.try(:title),"The Lincolnshire Poacher"].reject{|t|t.nil?}.join(' &mdash; ')
+  end
 end
 
 get '/' do
-  @articles = Article.recent
+  @article = Article.recent.first
   haml :index
 end
 
@@ -56,7 +65,7 @@ end
 
 get '/sitemap.xml' do
   @articles = Article.recent
-  content_type 'application/xml'
+  # content_type 'application/xml'
   haml :sitemap, :layout => false
 end
 
@@ -66,8 +75,6 @@ get /^\/css\/(.+)\.css/ do |style_file|
   content_type :css
   sass File.read(sass_file)
 end
-
-
 
 
 { '/rss' => 'http://feeds.feedburner.com/thelincolnshirepoacher'
