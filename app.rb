@@ -37,6 +37,13 @@ helpers do
   def article_title
     [@article.try(:title),"The Lincolnshire Poacher"].reject{|t|t.nil?}.join(' &mdash; ')
   end
+  def meta_tags
+    {
+      :author => 'Chris Lloyd',
+      :keywords => %w(chris lloyd ruby javascript programming software development language university uni ui ux rb js).join(', '),
+      :description => 'An ongoing collection of articles by Chris Lloyd.',
+    }
+  end
 end
 
 get '/' do

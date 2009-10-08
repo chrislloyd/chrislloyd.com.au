@@ -2,8 +2,19 @@
 %html
   %head
     %title= article_title
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
     %link{:href => '/css/reset.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => '/css/poacher.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+
+    - meta_tags.each do |name, content|
+      %meta{:name => name, :content => content}
+
+    %link{:href => 'http://www.myopenid.com/server', :rel => 'openid.server'}
+    %link{:href => 'http://chrislloyd.myopenid.com', :rel => 'openid.delegate'}
+    %link{:href => 'http://chrislloyd.myopenid.com', :rel => 'openid2.local_id'}
+    %link{:href => 'http://www.myopenid.com/server', :rel => 'openid2.provider'}
+    %meta{:content => 'http://www.myopenid.com/xrds?username=chrislloyd.myopenid.com', 'http-equiv' => 'X-XRDS-Location'}
+
   %body
     #header
       %h1

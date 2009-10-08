@@ -59,7 +59,8 @@ body
       color: #FFF
       text-shadow = (!sig_colour - #333) 0 1px 1px
       &:hover
-        color = !sig_colour + #333
+        // color = !sig_colour + #888
+        text-decoration: underline
 
   #nav
     position: absolute
@@ -70,7 +71,7 @@ body
     font-size: 14px
 
     a
-      margin: 0 10px
+      margin: 0 5px
       padding: 7px 5px 3px 5px
       text-decoration: none
       color: #999
@@ -95,7 +96,7 @@ body
     color: #FFF
     border = 2px "solid" !sig_colour
     position: absolute
-    margin: 0 10px
+    margin: 0 5px
     z-index: 10
     a
       font-size: 11px
