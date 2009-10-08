@@ -3,6 +3,9 @@
   %title The Lincolnshire Poacher
   %link{:href => "http://feeds.feedburner.com/thelincolnshirepoacher", :rel => "self", :hreflang => "en", :type => "application/atom+xml"}/
   %link{:href => "http://thelincolnshirepoacher.com", :rel => "alternate", :hreflang => "en", :type => "text/html"}/
+  %link{:href => 'http://thelincolnshirepoacher.com/feed.atom', :rel => 'self', :hreflang => 'en'}
+
+  %link{:href => 'http://feeds.feedburner.com/thelincolnshirepoacher', :rel => 'alternate', :title => 'The Lincolnshire Poacher', :type => 'application/atom+xml'}
 
   %author
     %name Chris Lloyd
@@ -19,5 +22,5 @@
       %published= article.published.xmlschema
       %updated= (article.updated || article.published).xmlschema
       %link{:href => "http://thelincolnshirepoacher.com#{article_path(article)}", :rel => "alternate", :hreflang => "en", :type => "text/html"}/
-      %content{:type => "xhtml", "xml:lang"=>"en", "xml:base"=>"http://thelincolnshirepoacher.com/"}
-        %div{:xmlns => "http://www.w3.org/1999/xhtml"}= absoluteify_links(render_article(article))
+      %content{:type => 'html'}
+        %div{:xmlns => 'http://www.w3.org/1999/xhtml'}= absoluteify_links(render_article(article))
