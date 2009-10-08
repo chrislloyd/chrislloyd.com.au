@@ -6,6 +6,8 @@
     %link{:href => '/css/reset.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => '/css/poacher.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
 
+    %link{:href => 'http://feeds.feedburner.com/thelincolnshirepoacher', :rel => 'alternate', :title => 'The Lincolnshire Poacher', :type => 'application/atom+xml'}
+
     - meta_tags.each do |name, content|
       %meta{:name => name, :content => content}
 
@@ -40,6 +42,6 @@
 
     :javascript
       try {
-      var pageTracker = _gat._getTracker("UA-256176-12");
+      var pageTracker = _gat._getTracker("UA-256176-7");
       pageTracker._trackPageview();
       } catch(err) {}

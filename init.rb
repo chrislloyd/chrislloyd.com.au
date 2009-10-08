@@ -18,7 +18,7 @@ Sass::Plugin.options[:load_paths] = [Sinatra::Application.views]
 
 # TODO Escape HTML by default
 # set :haml => {:escape_html => true, :attr_wrapper => '"', :format => :html4}
-set :haml => {:attr_wrapper => '"', :format => :html4}
+set :haml => {:attr_wrapper => '"'}
 set :app_file => 'app.rb'
 
 require 'lib/article'

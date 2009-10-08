@@ -42,6 +42,8 @@ helpers do
       :author => 'Chris Lloyd',
       :keywords => %w(chris lloyd ruby javascript programming software development language university uni ui ux rb js).join(', '),
       :description => 'An ongoing collection of articles by Chris Lloyd.',
+      'MSSmartTagsPreventParsing' => true,
+      :robots => 'all'
     }
   end
 end
@@ -70,9 +72,13 @@ get '/feed.atom' do
   haml :feed, :layout => false
 end
 
+get '/rss' do
+  redirect 'http://feeds.feedburner.com/thelincolnshirepoacher', 301
+end
+
 get '/sitemap.xml' do
   @articles = Article.recent
-  # content_type 'application/xml'
+  content_type 'application/xml'
   haml :sitemap, :layout => false
 end
 
@@ -82,7 +88,3 @@ get /^\/css\/(.+)\.css/ do |style_file|
   content_type :css
   sass File.read(sass_file)
 end
-
-
-{ '/rss' => 'http://feeds.feedburner.com/thelincolnshirepoacher'
-}.each {|from,to| get(from){ redirect(to,301) } }
