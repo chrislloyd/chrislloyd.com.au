@@ -14,12 +14,12 @@
   %id tag:thelincolnshirepoacher.com,2009-10-08:/
   %updated= @articles.first.published.xmlschema
 
-  - @articles[0..14].each do |article|
+  - @articles.each do |article|
     %entry
       %id== tag:thelincolnshirepoacher.com,#{article.published.strftime('%Y-%m-%d')}:#{article_path(article)}
-      %title{:type => "html"}= strip_tags(article.title).gsub(/&[A-Za-z0-9]+;/,'')
+      %title{:type => "html"}= strip_tags(article.title)
       %published= article.published.xmlschema
       %updated= (article.updated || article.published).xmlschema
-      %link{:href => "http://thelincolnshirepoacher.com#{article_path(article)}", :rel => "alternate", :hreflang => "en", :type => "text/html"}/
-      %content{:type => "xhtml", "xml:lang"=>"en", "xml:base"=>"http://thelincolnshirepoacher.com/"}
+      %link{:href => "http://thelincolnshirepoacher.com#{article_path(article)}", :rel => 'alternate', :hreflang => 'en', :type => 'text/html'}/
+      %content{:type => 'xhtml', 'xml:lang' => 'en', 'xml:base' => 'http://thelincolnshirepoacher.com'}
         %div{:xmlns => "http://www.w3.org/1999/xhtml"}= absoluteify_links(render_article(article))

@@ -10,6 +10,13 @@ class Object
   end
 end
 
+class Date
+  def xmlschema
+    strftime("%Y-%m-%dT%H:%M:%S%Z")
+  end unless defined?(xmlschema)
+end
+
+
 helpers do
   def hidden
     {:style => 'display:none;'}
@@ -46,6 +53,14 @@ helpers do
       :robots => 'all'
     }
   end
+  def figure(src, opts={})
+    partial :figure, :src => "/images/#{src}",
+                     :caption => opts[:caption],
+                     :alt => (opts[:alt] || opts[:caption]),
+                     :type => opts[:type],
+                     :link => opts[:link],
+                     :link_title => (opts[:link_title] || opts[:alt])
+  end
 end
 
 get '/' do
@@ -54,24 +69,21 @@ get '/' do
 end
 
 get '/articles/:slug' do |slug|
-  @article = Article[slug]
-  haml :article
+  (@article = Article[slug]) ? haml(:article) : pass
 end
 
+# Legacy
 get '/post/:tumblr/:slug' do |tumblr, slug|
-  if @article = Article.find_from_tumblr(tumblr, slug)
-    redirect(article_path(@article), 301)
-  else
-    pass
-  end
+  (@article = Article.find_from_tumblr(tumblr, slug)) ? redirect(article_path(@article), 301) : pass
 end
 
 get '/feed.atom' do
-  @articles = Article.recent
+  @articles = Article.recent[0..14]
   content_type 'application/atom+xml'
   haml :feed, :layout => false
 end
 
+# Legacy
 get '/rss' do
   redirect 'http://feeds.feedburner.com/thelincolnshirepoacher', 301
 end

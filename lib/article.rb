@@ -13,7 +13,7 @@ class Article
   end
 
   def self.recent
-    all.sort_by {|a| a.published }.reverse
+    all.sort.reverse
   end
 
   def self.find_from_tumblr(tumblr, slug)
