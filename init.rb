@@ -1,4 +1,3 @@
-require 'rubygems'
 ENV['TZ'] = 'Australia/Sydney'
 
 # Declare gems via the .gems file
@@ -10,7 +9,6 @@ require 'sinatra'
 require 'haml'
 require 'sass'
 require 'rdiscount'
-require 'app'
 
 require 'sass/plugin'
 Sass::Plugin.options[:load_paths] = [Sinatra::Application.views]

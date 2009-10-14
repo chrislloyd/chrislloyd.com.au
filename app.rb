@@ -42,7 +42,12 @@ helpers do
     @article == article
   end
   def article_title
-    [@article.try(:title),"The Lincolnshire Poacher"].reject{|t|t.nil?}.join(' &mdash; ')
+    base = 'The Lincolnshire Poacher by Chris Lloyd'
+    if request.path == '/'
+      base
+    else
+      [@article.try(:title),base].reject{|t|t.nil?}.join(' &mdash; ')
+    end
   end
   def meta_tags
     {
