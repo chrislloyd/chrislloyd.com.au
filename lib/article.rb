@@ -70,5 +70,4 @@ class Article
   def slot(name)
     template[/^-#\s+#{name}:\s*(.*)$/, 1].try(:strip)
   end
-
 end

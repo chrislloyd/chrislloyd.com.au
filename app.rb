@@ -35,8 +35,11 @@ helpers do
   def strip_tags(html)
     html.gsub(/<\/?[^>]*>/, '')
   end
+  def transform_ampersands(html)
+    html.gsub(' & '," <span class='amp'>&</span> ")
+  end
   def render_article(article)
-    haml(article.template, :layout => false)
+    haml(transform_ampersands(article.template), :layout => false)
   end
   def current_article?(article)
     @article == article
