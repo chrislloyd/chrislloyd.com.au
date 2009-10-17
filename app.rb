@@ -69,6 +69,13 @@ helpers do
                      :link => opts[:link],
                      :link_title => (opts[:link_title] || opts[:alt])
   end
+  def previous_article(article)
+    Article.recent[Article.recent.index(article) +1]
+  end
+  def next_article(article)
+    index = Article.recent.index(article)
+    Article.recent[index -1] if index > 0
+  end
 end
 
 get '/' do
