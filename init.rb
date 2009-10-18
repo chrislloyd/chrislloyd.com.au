@@ -14,7 +14,3 @@ require 'sass/plugin'
 Sass::Plugin.options[:load_paths] = [Sinatra::Application.views]
 
 set :app_file => 'app.rb'
-
-require 'lib/article'
-
-Article.path = 'articles'
