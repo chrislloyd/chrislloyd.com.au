@@ -11,5 +11,8 @@ $(function(){
   });
 
   // Disables contents link
-  $('a:first', contents).click(function(){return false;});
+  $('a:first', contents).click(function(){
+    $('ol', contents).show();
+    return false;
+  });
 });
