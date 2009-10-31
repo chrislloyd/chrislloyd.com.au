@@ -268,3 +268,12 @@ CodeHighlighter.addStyle("ruby",{
     exp : /@[A-Za-z0-9_!?]+/
   }
 });
+
+CodeHighlighter.addStyle("shell",{
+  comment : {
+    exp  : /#[^\n]+/
+  },
+  prompt : {
+    exp  : /(^|\n)\$/
+  }
+});
