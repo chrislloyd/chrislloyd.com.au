@@ -28,7 +28,7 @@
           %ol{hidden}
             - Article.recent.each do |article|
               %li{:class => ('current' if current_article?(article))}
-                %span.numeral #{article.number.to_roman}
+                %span.numeral= article.number.to_roman
                 %a{:href => article_path(article)}= article.title
           
       #artwork
