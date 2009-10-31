@@ -88,6 +88,10 @@ get '/articles/:slug/?' do |slug|
   (@article = Article[slug]) ? haml(:article) : pass
 end
 
+get '/colophon/?' do
+  haml :colophon
+end
+
 # Legacy
 get '/post/:tumblr/:slug/?' do |tumblr, slug|
   (@article = Article.find_from_tumblr(tumblr, slug)) ? redirect(article_path(@article), 301) : pass

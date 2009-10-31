@@ -1,9 +1,13 @@
 !!! xml
 %urlset{:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9"}
   %url
-    %loc http://thelincolnshirepoacher.com/
+    %loc http://thelincolnshirepoacher.com
     %priority 1.0
     %changefreq daily
+  %url
+    %loc http://thelincolnshirepoacher.com/colophon
+    %priority 0.8
+    %changefreq monthly
   - @articles.each do |article|
     %url
       %loc== http://thelincolnshirepoacher.com#{article_path(article)}

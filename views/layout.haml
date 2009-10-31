@@ -23,7 +23,9 @@
         %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
         by Chris Lloyd
       %ol#nav
-        %li#contents
+        %li.colophon
+          %a{:href => '/colophon', :title => 'About this site'} Colophon
+        %li.contents
           %a{:href => '#'} Contents
           %ol{hidden}
             - Article.recent.each do |article|

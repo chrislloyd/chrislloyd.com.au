@@ -129,7 +129,7 @@ body
           &.current a
             color: #CCC
 
-.article
+.article, .page
   position: relative
   +centify
   margin-top: -120px
@@ -222,6 +222,8 @@ body
       float: none
       margin = !gutter 0
       width = !width
+    &.right
+      text-align: right
 
     .caption
       margin = !gutter 0
@@ -247,4 +249,8 @@ body
   .entity
     color: #3b5bb5
   .variable
+    color: #999
+
+.shell
+  .prompt
     color: #999
