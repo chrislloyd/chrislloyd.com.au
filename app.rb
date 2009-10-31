@@ -1,6 +1,7 @@
 require 'init'
 
 require 'lib/article'
+require 'lib/numerals'
 
 Article.path = 'articles'
 
@@ -83,12 +84,12 @@ get '/' do
   haml :index
 end
 
-get '/articles/:slug' do |slug|
+get '/articles/:slug/?' do |slug|
   (@article = Article[slug]) ? haml(:article) : pass
 end
 
 # Legacy
-get '/post/:tumblr/:slug' do |tumblr, slug|
+get '/post/:tumblr/:slug/?' do |tumblr, slug|
   (@article = Article.find_from_tumblr(tumblr, slug)) ? redirect(article_path(@article), 301) : pass
 end
 
@@ -99,7 +100,7 @@ get '/feed.atom' do
 end
 
 # Legacy
-get '/rss' do
+get '/rss/?' do
   redirect 'http://feeds.feedburner.com/thelincolnshirepoacher', 301
 end
 

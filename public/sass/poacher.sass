@@ -24,6 +24,7 @@
     right: auto
 
 !sig_colour = #9C6
+!hover_colour = #390
 
 
 body
@@ -63,55 +64,69 @@ body
         text-decoration: underline
 
   #nav
-    position: absolute
-    right: 0
-    top: 38px
     line-height: 10px
     font-family: 'Chaparral Pro'
     font-size: 14px
+    position: relative
+    float: right
+    top: 35px
+    right: 10px
 
-    a
-      margin: 0 5px
-      padding: 7px 5px 3px 5px
-      text-decoration: none
-      color: #999
+    li
       float: left
       font-family: 'Chaparral Pro'
       font-style: italic
       text-transform: uppercase
-      &:hover, &.active
-        background-color = !sig_colour
-        color: #FFF
-        text-shadow = (!sig_colour - #333) 0 1px 1px
-
-  #past
-    top: 58px
-    right: 0
-    width: 150px
-    // text-align: right
-    background = !sig_colour + #111
-    color: #FFF
-    border = 2px "solid" !sig_colour
-    position: absolute
-    margin: 0 5px
-    z-index: 10
-    a
-      font-size: 11px
-      padding: 5px 3px
-      color: #FFF
-      text-decoration: none
-      font-family: Helvetica, Arial, sans-serif
-      text-shadow = (!sig_colour - #222) 0 1px 1px
-      display: block
+      color: #999
       line-height: 16px
 
-      &:hover
+      a
+        padding: 7px 5px 3px 5px
+        text-decoration: none
+        color: #999
+        display: block
+        font-style: italic
+
+      &.active, a:hover
         background = !sig_colour
-        text-shadow = (!sig_colour - #333) 0 1px 1px
-    .current
-      background = !sig_colour
-      font-weight: bold
-      text-shadow = (!sig_colour - #333) 0 1px 1px
+        color: #FFF
+        & > a
+          color: #FFF
+
+
+      ol
+        background: #FFF
+        right: 0
+        top: 25px
+        position: absolute
+        text-align: right
+        border-top = 1px "solid" !sig_colour
+        border-left: 1px solid #EFEFEF
+        border-right: 1px solid #EFEFEF
+        border-bottom: 1px solid #CCC
+        z-index: 99
+
+        li
+          display: block
+          float: none
+          color = !sig_colour
+
+          .numeral
+            float: right
+            margin-right: -19px
+            margin-top: 7px
+            text-align: left
+            width: 15px
+            font-size: 10px
+            color: #CCC
+          a
+            font-size: 12px
+            color: #666
+            &:hover
+              color: #000
+              background: transparent
+          &.current a
+            color: #CCC
 
 .article
   position: relative
@@ -142,15 +157,16 @@ body
       color = !sig_colour
       text-decoration: none
       font-weight: bold
-      &:hover .arrow
-        color: #333
+      &:hover
+        color = !hover_colour
+        .arrow
+          color: #999
     .previous
       float: left
     .next
       float: right
     .arrow
       font-size: 14px
-      // font-weight: bold
       color: #CCC
 
 
@@ -169,6 +185,7 @@ body
     text-decoration: none
     white-space: nowrap
     &:hover
+      color = !hover_colour
       text-decoration: underline
 
   h2
@@ -183,9 +200,10 @@ body
 
   pre
     margin = !gutter 0
+    code
+      font-size: 110%
 
   code
-    font-size: 110%
     font-family: Inconsolata
 
   ol
@@ -217,7 +235,6 @@ body
     height: 10px
     margin: 5px 10px
     float: left
-
 
 .ruby
   .comment

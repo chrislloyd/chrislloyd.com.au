@@ -70,4 +70,10 @@ class Article
   def slot(name)
     template[/^-#\s+#{name}:\s*(.*)$/, 1].try(:strip)
   end
+
+  def number
+    articles = self.class.recent
+    articles.size - articles.index(self)
+  end
+
 end

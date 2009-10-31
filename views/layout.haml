@@ -22,12 +22,15 @@
       %h1
         %a{:href => '/', :title => 'Home'} The Lincolnshire Poacher
         by Chris Lloyd
-      #nav
-        %a.past{:href => '#'} Contents
-      %ol#past{hidden}
-        - for article in Article.recent
-          %li{:class => (current_article?(article) ? 'current' : '')}
-            %a{:href => article_path(article)}= article.title
+      %ol#nav
+        %li#contents
+          %a{:href => '#'} Contents
+          %ol{hidden}
+            - Article.recent.each do |article|
+              %li{:class => ('current' if current_article?(article))}
+                %span.numeral #{article.number.to_roman}
+                %a{:href => article_path(article)}= article.title
+          
       #artwork
 
     = yield
