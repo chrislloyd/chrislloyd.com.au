@@ -4,15 +4,19 @@ $(function(){
       colophonLink = $('.colophon a');
 
   function hideContents() {
-    contents.removeClass('active');
-    contentsBody.hide();
+    if(!contents.data('hovering')) {
+      contents.removeClass('active');
+      contentsBody.hide();
+    }
   }
 
   contents.hover(function(){
+    contents.data('hovering', true);
     contents.addClass('active');
     contentsBody.show();
   }, function(){
-    setTimeout(hideContents,300);
+    contents.data('hovering', false);
+    setTimeout(hideContents,400);
   });
 
   // Disables contents link
