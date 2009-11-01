@@ -177,7 +177,7 @@ body
     :font-family Baskerville, Palatino, "Book Antiqua", serif
     :font-style italic
 
-  p + p
+  p + p, p + .figure:not(.wide) + p
     text-indent = 2 * !gutter
 
   a
@@ -211,10 +211,18 @@ body
   ul
     list-style: disc
 
+  hr
+    border: none
+      top: 1px dotted #CCC
+    margin:
+      top: 19px
+      bottom: 20px
+
   .figure
     width: 280px
     float: right
     margin-right: -300px
+    clear: right
 
     &.wide
       float: none
@@ -223,10 +231,17 @@ body
     &.right
       text-align: right
 
+
     .caption
       margin = !gutter 0
       font-size: 0.857142857142857em
       color: #666
+
+      .credit
+        display: block
+        font-family: Helvetica, Arial, sans-serif
+        font-size: 10px
+        text-transform: uppercase
 
 #artwork
   padding-top: 5px
