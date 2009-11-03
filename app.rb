@@ -77,6 +77,10 @@ helpers do
     index = Article.recent.index(article)
     Article.recent[index -1] if index > 0
   end
+  def analytics_code
+    request.host == 'thelincolnshirepoacher.com' ? 'UA-256176-12' : 'UA-256176-7'
+  end
+
 end
 
 get '/' do
