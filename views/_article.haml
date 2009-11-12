@@ -5,11 +5,11 @@
     = render_article(article)
 
   .footer
-    - if prev = previous_article(article)
+    - if prev = article.previous
       %a.previous{:href => article_path(prev)}
         %span.arrow &larr;
         Previous article
-    - if nxt = next_article(article)
+    - if nxt = article.next
       %a.next{:href => article_path(nxt)}
         Next
         %span.arrow &rarr;

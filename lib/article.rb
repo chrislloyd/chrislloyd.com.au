@@ -54,8 +54,18 @@ class Article
     published <=> other.published
   end
 
-  def previous; self; end
-  def next; self; end
+  def previous
+    self.class.recent[self.class.recent.index(self) +1]
+  end
+
+  def next
+    index = self.class.recent.index(self)
+    self.class.recent[index -1] if index > 0
+  end
+
+  def extract
+    (extract = slot(:extract)) ? "\"#{extract}\"" : ''
+  end
 
 # private
 
