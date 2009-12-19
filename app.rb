@@ -88,7 +88,10 @@ helpers do
 end
 
 before do
-  redirect 'thelincolnshirepoacher.com', 301 if request.host =~ /chrislloyd.com.au/
+  if request.host =~ /chrislloyd.com.au/
+    path = 'http://thelincolnshirepoacher.com' + request.env['REQUEST_URI']
+    redirect path, 301
+  end
 end
 
 
