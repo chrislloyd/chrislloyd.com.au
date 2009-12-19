@@ -88,7 +88,7 @@ helpers do
 end
 
 before do
-  redirect 'thelincolnshirepoacher.com', 301 if request.host =~ 'chrislloyd.com.au'
+  redirect 'thelincolnshirepoacher.com', 301 if request.host =~ /chrislloyd.com.au/
 end
 
 
