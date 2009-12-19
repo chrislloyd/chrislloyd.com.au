@@ -69,6 +69,7 @@ helpers do
       :description => "The Lincolnshire Poacher is a collection of articles written by Chris Lloyd about programming, technology & business. #{@article.try(:extract)}",
       'MSSmartTagsPreventParsing' => true,
       :robots => 'all'
+      'google-site-verification' =>  'lrUadsAhZFgSsFpxP8mqYxJhqVgjOwDtW5X3RfPMqLA'
     }
   end
 
