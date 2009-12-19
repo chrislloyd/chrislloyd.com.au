@@ -81,10 +81,7 @@ helpers do
                      :link_title => (opts[:link_title] || opts[:alt])
   end
 
-  def analytics_code
-    request.host == 'thelincolnshirepoacher.com' ? 'UA-256176-12' : 'UA-256176-7'
-  end
-
+  def analytics_code; ENV['ANALYTICS'] end
 end
 
 before do
