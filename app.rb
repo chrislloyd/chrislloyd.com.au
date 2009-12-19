@@ -17,7 +17,6 @@ class Date
   end unless defined?(xmlschema)
 end
 
-
 helpers do
 
   def hidden
@@ -87,6 +86,11 @@ helpers do
   end
 
 end
+
+before do
+  redirect 'thelincolnshirepoacher.com', 301 if request.host =~ 'chrislloyd.com.au'
+end
+
 
 get '/' do
   @article = Article.recent.first
