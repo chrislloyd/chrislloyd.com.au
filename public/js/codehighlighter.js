@@ -266,6 +266,9 @@ CodeHighlighter.addStyle("ruby",{
   },
   variable : {
     exp : /@[A-Za-z0-9_!?]+/
+  },
+  constant : {
+    exp : /\$([A-Z0-9_!?]+)|__FILE__/
   }
 });
 
