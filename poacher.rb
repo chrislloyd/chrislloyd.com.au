@@ -87,7 +87,10 @@ helpers do
 end
 
 before do
-  if request.host =~ /chrislloyd.com.au/
+  if request.path == '/' && !request.accept.grep('application/xrds+xml').empty?
+    content_type 'application/xrds+xml'
+    halt File.read(File.join(options.public,'yadis.xrdf'))
+  elsif request.host =~ /chrislloyd.com.au/
     path = 'http://thelincolnshirepoacher.com' + request.env['REQUEST_URI']
     redirect path, 301
   end

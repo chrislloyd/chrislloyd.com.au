@@ -1,0 +1,12 @@
+<xrds:XRDS xmlns:xrds="xri://$xrds" xmlns="xri://$xrd*($v*2.0)"
+      xmlns:openid="http://openid.net/xmlns/1.0">
+  <XRD>
+
+    <Service priority="1">
+      <Type>http://openid.net/signon/1.0</Type>
+      <URI>https://www.myopenid.com/server</URI>
+      <openid:Delegate>https://chris.lloyd.myopenid.com/</openid:Delegate>
+    </Service>
+
+  </XRD>
+</xrds:XRDS>
