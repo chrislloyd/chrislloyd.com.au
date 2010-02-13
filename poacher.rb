@@ -94,7 +94,7 @@ before do
     path = 'http://thelincolnshirepoacher.com' + request.env['REQUEST_URI']
     redirect path, 301
   end
-end
+end if production?
 
 
 get '/' do
@@ -132,11 +132,11 @@ get '/sitemap.xml' do
   haml :sitemap, :layout => false
 end
 
-get /^\/css\/(.+)\.css/ do |style_file|
-  sass_file = File.join('public','sass',"#{style_file}.sass")
-  pass unless File.exist?(sass_file)
-  content_type :css
-  sass File.read(sass_file)
+%w(screen print).each do |style|
+  get "/#{style}.css" do
+    content_type :css
+    sass File.read("public/sass/#{style}.sass")
+  end
 end
 
 not_found do
