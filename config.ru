@@ -1,2 +1,2 @@
-require 'app'
+require 'poacher'
 run Sinatra::Application
