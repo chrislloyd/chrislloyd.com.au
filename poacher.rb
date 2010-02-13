@@ -90,7 +90,7 @@ before do
   if request.path == '/' && !request.accept.grep('application/xrds+xml').empty?
     content_type 'application/xrds+xml'
     halt File.read(File.join(options.public,'yadis.xrdf'))
-  elsif request.host !=~ /thelincolnshirepoacher.com/
+  elsif !(request.host =~ /thelincolnshirepoacher.com/)
     path = 'http://thelincolnshirepoacher.com' + request.env['REQUEST_URI']
     redirect path, 301
   end
