@@ -2,23 +2,26 @@
 %html
   %head
     %title= article_title
+
     %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
-    %link{:href => '/css/reset.css', :media => 'screen', :rel => 'stylesheet', :type => 'text/css'}
+    - meta_tags
+
     %link{:href => '/css/poacher.css', :media => 'all', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => '/css/print.css', :media => 'print', :rel => 'stylesheet', :type => 'text/css'}
 
     %link{:href => 'http://feeds.feedburner.com/thelincolnshirepoacher', :rel => 'alternate', :title => 'The Lincolnshire Poacher', :type => 'application/atom+xml'}
 
-    - meta_tags.each do |name, content|
-      %meta{:name => name, :content => content}
-    
+    %script{:type => 'text/javascript', :src => 'http://use.typekit.com/igi8pdv.js'}
+    :javascript
+      try{Typekit.load();}catch(e){}
+
     %link{:href => 'http://www.myopenid.com/server', :rel => 'openid.server'}
     %link{:href => 'http://chrislloyd.myopenid.com', :rel => 'openid.delegate'}
     %link{:href => 'http://chrislloyd.myopenid.com', :rel => 'openid2.local_id'}
     %link{:href => 'http://www.myopenid.com/server', :rel => 'openid2.provider'}
     %meta{:content => 'http://www.myopenid.com/xrds?username=chrislloyd.myopenid.com', 'http-equiv' => 'X-XRDS-Location'}
-    
-    - if options.environment == :production
+
+    - if production?
       :javascript
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '#{analytics_code}']);
@@ -29,7 +32,7 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
         })();
-      
+
   %body
     #header
       %h1
@@ -45,7 +48,7 @@
               %li{:class => ('current' if current_article?(article))}
                 %span.numeral= article.number.to_roman
                 %a{:href => article_path(article)}= article.title
-          
+
       #artwork
 
     = yield

@@ -1,5 +1,5 @@
-task :default do
-  exec 'shotgun --require init --server thin --host 0.0.0.0 --port 4567 app.rb'
+task :dev do
+  exec 'vendor/bin/shotgun --require init --server thin --host 127.0.0.1 --port 4567 poacher.rb'
 end
 
 task :article do

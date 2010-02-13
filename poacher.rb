@@ -63,14 +63,15 @@ helpers do
   end
 
   def meta_tags
-    {
-      :author => 'Chris Lloyd',
+    { :author => 'Chris Lloyd',
       :keywords => %w(chris lloyd ruby javascript programming software development language university uni ui ux rb js).join(', '),
       :description => "The Lincolnshire Poacher is a collection of articles written by Chris Lloyd about programming, technology & business. #{@article.try(:extract)}",
       'MSSmartTagsPreventParsing' => true,
       :robots => 'all',
       'google-site-verification' =>  'lrUadsAhZFgSsFpxP8mqYxJhqVgjOwDtW5X3RfPMqLA'
-    }
+    }.each do |name, content|
+      haml_tag :meta, :name => name, :content => content
+    end
   end
 
   def figure(src, opts={})

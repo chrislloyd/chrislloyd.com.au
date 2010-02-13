@@ -1,16 +1,18 @@
-ENV['TZ'] = 'Australia/Sydney'
-
-# Declare gems via the .gems file
-File.file?(gems_file = "#{File.dirname(__FILE__)}/.gems") && File.read(gems_file).each do |gem_decl|
-  gem_name, version = gem_decl[/^([^\s]+)/,1], gem_decl[/--version ([^\s]+)/,1]
-  version ? gem(gem_name, version) : gem(gem_name)
+begin
+  require File.join(File.dirname(__FILE__), '.bundle', 'environment')
+rescue LoadError
+  require 'bundler'
+  Bundler.setup
 end
-require 'sinatra'
-require 'haml'
-require 'sass'
-require 'rdiscount'
 
-require 'sass/plugin'
-Sass::Plugin.options[:load_paths] = [Sinatra::Application.views]
+Bundler.require :default
 
-set :app_file => 'app.rb'
+configure do
+
+  require 'sass/plugin'
+  Sass::Plugin.options[:load_paths] = [Sinatra::Application.views]
+
+  ENV['TZ'] = 'Australia/Sydney'
+
+  set :app_file => 'poacher.rb'
+end
