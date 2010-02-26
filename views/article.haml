@@ -1,1 +1,8 @@
-= partial :article, :article => @article
+%art.mini
+  #work
+
+%article
+  %h1= @article.title
+  %content
+    = render_article(@article)
+

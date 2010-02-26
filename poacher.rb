@@ -11,12 +11,6 @@ class Object
   end
 end
 
-class Date
-  def xmlschema
-    strftime("%Y-%m-%dT%H:%M:%S%Z")
-  end unless defined?(xmlschema)
-end
-
 helpers do
 
   def hidden
@@ -31,16 +25,7 @@ helpers do
     haml "_#{name}".to_sym, :layout => false, :locals => locals
   end
 
-  def absoluteify_links(html)
-    html.
-      gsub(/href=(["'])(\/.*?)(["'])/, 'href=\1http://thelincolnshirepoacher.com\2\3').
-      gsub(/src=(["'])(\/.*?)(["'])/, 'src=\1http://thelincolnshirepoacher.com\2\3')
-  end
-
-  def strip_tags(html)
-    html.gsub(/<\/?[^>]*>/, '')
-  end
-
+  # TODO Implement in Javascript
   def transform_ampersands(html)
     html.gsub(' & '," <span class='amp'>&</span> ")
   end
@@ -58,7 +43,7 @@ helpers do
     if request.path == '/'
       base
     else
-      [@article.try(:title),base].reject{|t|t.nil?}.join(' &mdash; ')
+        [@article.try(:title),base].compact.join(' &mdash; ')
     end
   end
 
@@ -106,24 +91,9 @@ get '/articles/:slug/?' do |slug|
   (@article = Article[slug]) ? haml(:article) : pass
 end
 
-get '/colophon/?' do
-  haml :colophon
-end
-
 # Legacy
 get '/post/:tumblr/:slug/?' do |tumblr, slug|
   (@article = Article.find_from_tumblr(tumblr, slug)) ? redirect(article_path(@article), 301) : pass
-end
-
-get '/feed.atom' do
-  @articles = Article.recent[0..14]
-  content_type 'application/atom+xml'
-  haml :feed, :layout => false
-end
-
-# Legacy
-get '/rss/?' do
-  redirect 'http://feeds.feedburner.com/thelincolnshirepoacher', 301
 end
 
 get '/sitemap.xml' do

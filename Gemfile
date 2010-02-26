@@ -6,4 +6,5 @@ gem 'rdiscount', '1.5.8'
 
 group :development do
   gem 'shotgun', '0.6'
+  gem 'thin', '1.2.5'
 end
