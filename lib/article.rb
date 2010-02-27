@@ -42,12 +42,18 @@ class Article
     define_method(attr) { slot(attr) }
   end
 
-  [:published, :updated].each do |stamp|
-    define_method(stamp) do
-      if time = slot(stamp)
-        Time.local(*time.match(self.class.date_regexp).to_a[1..-1])
-      end
+  def published
+    if time = slot(:published)
+      Time.local(*time.match(self.class.date_regexp).to_a[1..-1])
     end
+  end
+
+  def starred?
+    slot(:starred) == 'true'
+  end
+
+  def recent?
+    published
   end
 
   def <=>(other)
@@ -61,10 +67,6 @@ class Article
   def next
     index = self.class.recent.index(self)
     self.class.recent[index -1] if index > 0
-  end
-
-  def extract
-    (extract = slot(:extract)) ? "\"#{extract}\"" : ''
   end
 
 # private

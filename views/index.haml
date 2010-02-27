@@ -1,2 +1,34 @@
-%art
-  #work
+#frame
+  #art
+
+%nav
+  
+
+%nav
+  %h2 Pages
+  %ul
+    - @pages.each do |p|
+      %li{:class => ('starred' if p.starred?)}
+        %a{:href => article_path(p), :title => p.title}= p.title
+
+%nav
+  %h2 Talks
+  %ul
+    %li.starred
+      %a{:href => 'http://vimeo.com/7862027', :title => 'Video'} The Pub at the End of the Universe
+    %li
+      %a{:href => 'http://vimeo.com/6306420', :title => 'Video'} Tyrone's Tuff  Lovin
+
+%nav
+  %h2 Elsewhere
+  %ul
+    %li
+      %a{:href => 'http://github.com/chrislloyd'} Github
+    %li
+      %a{:href => 'http://twitter.com/chrislloyd'} Twitter
+
+%nav
+  %h2 Contact
+  %ul
+    %li
+      %a{:href => 'mailto:christopher.lloyd@gmail.com'} christopher.lloyd@gmail.com

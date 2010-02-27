@@ -10,6 +10,15 @@ body
   line-height: 2em
   background: #FFF
 
+a
+  color: #06C
+  text-decoration: none
+  border-bottom: 1px solid #CCC
+  &:visited
+    border-bottom-color: #EEE
+  &:hover
+    border-bottom-color: #06C
+
 header
   width = !width
   margin = 2*!gutter "auto" 0 "auto"
@@ -21,6 +30,7 @@ header
     letter-spacing: 0.1em
     color: #CCC
     font-style: italic
+    line-height: 100px
     a
       text-decoration: none
       text-transform: uppercase
@@ -28,16 +38,18 @@ header
       font-style: normal
       margin-right: 0.1em
 
-art
+#frame
   background: #EEE
   display: block
   overflow: hidden
   height: 300px
+  margin-bottom: 40px
   &.mini
     height: 10px
-    #work
+    margin-bottom: 0
+    #art
       height: 10px
-  #work
+  #art
     position: absolute
     left: 50%
     margin-left: -480px
@@ -57,60 +69,64 @@ article
     width: 400px
     display: block
 
-h1
-  font-size: 36px
-  line-height: 100px
-  font-weight: normal
-  color: #000
+  h1
+    font-size: 36px
+    line-height: 100px
+    font-weight: normal
+    color: #000
 
-// Block level elements
-p, h2, h3, pre, figure
-  margin-bottom: 10px
+  // Block level elements
+  p, h2, h3, pre, figure
+    margin-bottom: 10px
 
-h2
-  line-height: 40px
-  text-transform: uppercase
-  font-size: 15px
+  h2
+    line-height: 40px
+    text-transform: uppercase
+    font-size: 15px
 
-p+p, p + figure:not(.wide) + p, p + pre + p
-  text-indent: 10px
+  p+p, p + figure:not(.wide) + p, p + pre + p
+    text-indent: 10px
 
-a
-  color: #06C
-  text-decoration: none
-  border-bottom: 1px solid #CCC
-  &:visited
-    border-bottom-color: #EEE
-  &:hover
-    border-bottom-color: #06C
+  pre
+    padding: 10px 0
+    
+  ul,ol
+    margin-bottom = !gutter
+    list-color: #CCC
+  ol
+    list-style: decimal
+  ul
+    list-style: disc
 
-pre
-  padding: 10px 0
-
-figure
-  width: 280px
-  float: right
-  margin-right: -300px
-  clear: right
-  
-  &.wide
-    float: none
-    margin = !gutter 0
-    width = !width
-  &.right
-    text-align: right
-  
-  .caption
-    margin = !gutter 0
-    font-size: 12px
-    color: #999
-  
-    a.credit
-      display: block
-      font-size: 10px
-      text-transform: uppercase
+  figure
+    width: 280px
+    float: right
+    margin-right: -300px
+    clear: right
+    
+    a
       border: none
-      color = #69C
+      margin: 0
+      padding: 0
+    
+    &.wide
+      float: none
+      margin = !gutter 0
+      width = !width
+    &.right
+      text-align: right
+  
+    .caption
+      margin = !gutter 0
+      font-size: 12px
+      color: #999
+  
+      a.credit
+        display: block
+        font-size: 10px
+        text-transform: uppercase
+        border: none
+        color = #69C
 
 code
   &.ruby
@@ -130,3 +146,32 @@ code
   &.shell
     .prompt
       color: #999
+
+nav
+  display: block
+  clear: both
+  overflow: auto
+  width: 700px
+  margin: 0 auto
+  line-height: 20px
+  padding: 10px 0
+  font-size: 12px
+  h2
+    color: #333
+    font-size: 12px
+    text-transform: uppercase
+    float: left
+  ul
+    margin-left: 100px
+    li
+      float: left
+      margin-right: 10px
+      color: #666
+      line-height: 20px
+      a
+        line-height: 19px
+        text-decoration: none
+        color: #666
+      &.starred a
+        // font-weight: bold
+        color: #06C

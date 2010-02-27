@@ -83,7 +83,7 @@ end if production?
 
 
 get '/' do
-  @article = Article.recent.first
+  @pages = Article.recent
   haml :index
 end
 
@@ -107,6 +107,11 @@ end
     content_type :css
     sass File.read("public/sass/#{style}.sass")
   end
+end
+
+get '/poacher.css' do
+
+  content_type :javascript
 end
 
 not_found do

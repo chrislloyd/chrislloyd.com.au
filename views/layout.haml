@@ -15,16 +15,15 @@
     
     = partial :openid
     = partial :typekit
-        
     = partial :google_analytics if production?
     
     :javascript
       $(document).ready(function(){
-        var paper = Raphael('work', 960, 300);
+        var paper = Raphael('art', 960, 300);
         
         for(var x=0; x<960; x+=50) {
           paper.path(['M', 0, x, 'L', x, 0]).attr({
-            stroke: 'yellow',
+            stroke: '#FF0',
             'stroke-width': 10
           });
         }
