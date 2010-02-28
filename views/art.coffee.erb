@@ -10,7 +10,7 @@ Art: {
   works: []
   colors: ['#FFF', '#90C', '#06C', '#FF0', '#096', '#F63']
   draw: (paper) ->
-    for i in [0..4]
+    for i in [0...3]
       color: @colors.pick()
       while color == '#FFF' && i == 0
         color: @colors.pick()
