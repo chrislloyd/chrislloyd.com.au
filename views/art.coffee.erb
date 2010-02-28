@@ -1,0 +1,28 @@
+rand: (n) ->
+  Math.floor(Math.random()*n)
+
+Array.prototype.pick: ->
+  this[rand(@length)]
+
+Art: {
+  width: 960,
+  height: 300
+  works: []
+  colors: ['#FFF', '#90C', '#06C', '#FF0', '#096', '#F63']
+  draw: (paper) ->
+    for i in [0..4]
+      color: @colors.pick()
+      while color == '#FFF' && i == 0
+        color: @colors.pick()
+      (@works.pop() || ->).call(paper, color)
+}
+
+<% @artworks.sort_by {|a| rand }.each do |fn| %>
+Art.works.push <%= fn %>
+<% end %>
+
+$(document).ready ->
+  paper: Raphael 'art', Art.width, Art.height
+  Art.draw paper
+  $('.special').prepend '&#9733;'
+

@@ -54,9 +54,7 @@ helpers do
       'MSSmartTagsPreventParsing' => true,
       :robots => 'all',
       'google-site-verification' =>  'lrUadsAhZFgSsFpxP8mqYxJhqVgjOwDtW5X3RfPMqLA'
-    }.each do |name, content|
-      haml_tag :meta, :name => name, :content => content
-    end
+    }
   end
 
   def figure(src, opts={})
@@ -68,7 +66,6 @@ helpers do
                      :link_title => (opts[:link_title] || opts[:alt])
   end
 
-  def analytics_code; ENV['ANALYTICS'] end
 end
 
 before do
@@ -109,9 +106,10 @@ end
   end
 end
 
-get '/poacher.css' do
-
-  content_type :javascript
+get '/poacher.js' do
+  @artworks = Dir['art/*.coffee'].collect {|file| File.read(file) }
+  content_type 'text/javascript'
+  CoffeeScript.compile erb(:'art.coffee')
 end
 
 not_found do

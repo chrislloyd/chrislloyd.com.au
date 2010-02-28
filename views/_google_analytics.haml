@@ -1,6 +1,6 @@
 :javascript
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '#{analytics_code}']);
+  _gaq.push(['_setAccount', '#{ENV['ANALYTICS']}']);
   _gaq.push(['_trackPageview']);
   
   (function() {
