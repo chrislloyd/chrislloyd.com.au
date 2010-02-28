@@ -8,16 +8,18 @@
   %h2 Pages
   %ul
     - @pages.each do |p|
-      %li{:class => ('starred' if p.starred?)}
+      %li{:class => ('special' if p.special?)}
         %a{:href => article_path(p), :title => p.title}= p.title
 
 %nav
   %h2 Talks
   %ul
-    %li.starred
+    %li.special
       %a{:href => 'http://vimeo.com/7862027', :title => 'Video'} The Pub at the End of the Universe
     %li
       %a{:href => 'http://vimeo.com/6306420', :title => 'Video'} Tyrone's Tuff  Lovin
+
+
 
 %nav
   %h2 Elsewhere

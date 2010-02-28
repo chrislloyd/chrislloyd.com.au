@@ -20,39 +20,11 @@
     :javascript
       $(document).ready(function(){
         var paper = Raphael('art', 960, 300);
+        // for(var i=0; i<4; ++i) {
+        //   Art.invoke(paper);
+        // }
         
-        for(var x=0; x<960; x+=50) {
-          paper.path(['M', 0, x, 'L', x, 0]).attr({
-            stroke: '#FF0',
-            'stroke-width': 10
-          });
-        }
-        
-        
-        paper.rect(350,100,300,300).attr({
-          fill: '#06C',
-          stroke: 'none',
-          rotation: 45,
-          opacity: 0.9
-        });
-        paper.rect(350,50,300,300).attr({
-          fill: '#06C',
-          stroke: 'none',
-          rotation: 45,
-          opacity: 0.7
-        });
-        paper.rect(350,0,300,300).attr({
-          fill: '#06C',
-          stroke: 'none',
-          rotation: 45,
-          opacity: 0.5
-        });
-        paper.rect(350,-50,300,300).attr({
-          fill: '#06C',
-          stroke: 'none',
-          rotation: 45,
-          opacity: 0.3
-        });
+        $('.special').prepend('&#9733;');
         
       });
     

@@ -48,8 +48,8 @@ class Article
     end
   end
 
-  def starred?
-    slot(:starred) == 'true'
+  def special?
+    slot(:special) == 'true'
   end
 
   def recent?
