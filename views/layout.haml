@@ -17,6 +17,8 @@
     = partial :openid
     = partial :typekit
     = partial :google_analytics if production?
+    :javascript
+      $(document).ready(function(){ $('.special').prepend('&#9733;') });
     
   %body
     %header

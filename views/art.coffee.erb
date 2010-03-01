@@ -8,21 +8,26 @@ Art: {
   width: 960,
   height: 300
   works: []
-  colors: ['#FFF', '#90C', '#06C', '#FF0', '#096', '#F63']
+  colors: ['#FFF', '#90C', '#06C', '#FF0', '#3C9', '#F63']
   draw: (paper) ->
+    focus: {x: rand(@width), y: rand(@height)}
     for i in [0...3]
       color: @colors.pick()
       while color == '#FFF' && i == 0
         color: @colors.pick()
-      (@works.pop() || ->).call(paper, color)
+      (@works.pop() || ->).call(paper, color, focus)
 }
 
-<% @artworks.sort_by {|a| rand }.each do |fn| %>
+<% @artworks.sort_by {|a| rand }.each do |_,fn| %>
 Art.works.push <%= fn %>
 <% end %>
 
 $(document).ready ->
   paper: Raphael 'art', Art.width, Art.height
   Art.draw paper
-  $('.special').prepend '&#9733;'
+
+$(window).resize ->
+  art: $('#art')
+  if window.innerWidth < art.width()
+    art.css('clip', 'rect(0,'+window.innerWidth')')
 

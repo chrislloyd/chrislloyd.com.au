@@ -107,7 +107,10 @@ end
 end
 
 get '/poacher.js' do
-  @artworks = Dir['art/*.coffee'].collect {|file| File.read(file) }
+  @artworks = Dir['art/*.coffee'].inject({}) {|works, file|
+    works[File.basename(file,'.*')] = File.read(file)
+    works
+  }
   content_type 'text/javascript'
   CoffeeScript.compile erb(:'art.coffee')
 end
