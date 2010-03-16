@@ -1,5 +1,9 @@
 (color, focus) ->
   size: 100
-  @circle(focus.x, focus.y, 3).attr({fill: 'FF000', stroke: 'none'})
+  s: @set()
 
-  @rect(focus.x - size*0.5, focus.y - size*0.5, size, size)
+  for dir in [{x:0,y:1},{x:1,y:0},{x:0,y: -1},{x: -1,y:0}]
+    x: focus.x - size*0.5 + size*dir.x
+    y: focus.y - size*0.5 + size*dir.y
+    s.push @rect(x, y, size, size).attr({fill: color, stroke: 'none'})
+  s.rotate(45, focus.x, focus.y)
