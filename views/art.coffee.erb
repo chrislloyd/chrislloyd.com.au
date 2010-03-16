@@ -17,7 +17,7 @@ Art: {
       x: (@width-@visibleWidth)*0.5 + rand(@visibleWidth)
       y: (@height-@visibleHeight)*0.5 + rand(@visibleHeight)
     }
-    for i in [0...3+rand(3)]
+    for i in [0...4+rand(4)]
       @works[rand(@works.length)].call(paper, @colors.pick(), focus)
 
 }

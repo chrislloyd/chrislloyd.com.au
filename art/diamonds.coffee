@@ -1,5 +1,5 @@
 (color, focus) ->
-  size: 100
+  size: 50+rand(150)
   s: @set()
 
   for dir in [{x:0,y:1},{x:1,y:0},{x:0,y: -1},{x: -1,y:0}]
