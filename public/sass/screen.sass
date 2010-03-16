@@ -1,9 +1,18 @@
 @import reset
 
 !gutter = 10px
+!full_width = 960px
 !width = 700px
 
 !colora = #06C
+
+@-webkit-keyframes spin 
+  from
+    -webkit-transform: rotate(0deg) scale(100%)
+  50%
+    -webkit-transform: rotate(180deg) scale(200%)
+  to
+    -webkit-transform: rotate(360deg) scale(100%)
 
 body
   font-size: 62.5%
@@ -42,19 +51,58 @@ header
 #frame
   display: block
   overflow: hidden
-  height: 300px
-  margin-bottom: 40px
-  &.mini
-    height: 10px
-    margin-bottom: 0
-    #art
-      height: 10px
+  height: 320px
+  position: relative
+  
+  width: 100%
+  min-width = !width
+  max-width = !full_width
+  margin: 0 auto
+  padding-left = -130px
+  
   #art
     position: absolute
     left: 50%
     margin-left: -480px
     overflow: hidden
-    min-width: 700px
+    top: -480px
+  a.reload
+    position: absolute
+    left: 50%
+    margin-left = (!full_width / 2) - !gutter - 20px
+    text-align: right
+    bottom = !gutter
+    line-height: 19px
+    font-size: 14px
+    font-weight: bold
+    color: #DDD
+    border: none
+    background: #FFF
+    padding-top: 1px
+    -webkit-border-radius: 20px
+    width: 20px
+    -webkit-transition-property: -webkit-transform, color
+    -webkit-transition-duration: 0.5s
+    text-align: center
+    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.2)
+    &:hover
+      color: #06C
+      -webkit-transform: rotate(360deg) scale(1.2)
+    
+  &.mini
+    height: 10px
+    margin-bottom: 0
+    #art
+      height: 10px
+    a.reload
+      bottom: 0
+      font-size: 10px
+      line-height: 10px
+      width: 10px
+      -webkit-box-shadow: none
+      margin-left = (!full_width / 2) - (!gutter/2) - 10px
+      &:hover
+        -webkit-transform: none
 
 article
   font-size: 14px
@@ -174,3 +222,5 @@ nav
         line-height: 19px
         font-size: 12px
         text-decoration: none
+      &.special:hover
+        color: #FF0
