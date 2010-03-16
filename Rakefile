@@ -13,4 +13,5 @@ task :article do
 -# published: #{Time.now.strftime("%Y-%m-%d %H:%M")}
     EOF
   end
+  system "#{ENV['EDITOR']} #{filename}"
 end
