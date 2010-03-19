@@ -50,10 +50,8 @@ helpers do
   def meta_tags
     { :author => 'Chris Lloyd',
       :keywords => %w(chris lloyd ruby javascript programming software development language university uni ui ux rb js).join(', '),
-      :description => "The Lincolnshire Poacher is a collection of articles written by Chris Lloyd about programming, technology & business. #{@article.try(:extract)}",
       'MSSmartTagsPreventParsing' => true,
       :robots => 'all',
-      'google-site-verification' =>  'lrUadsAhZFgSsFpxP8mqYxJhqVgjOwDtW5X3RfPMqLA'
     }
   end
 
@@ -114,6 +112,10 @@ get '/poacher.js' do
   content_type 'text/javascript'
   CoffeeScript.compile erb(:'art.coffee')
 end
+
+get '/tumblr' do
+  haml :tumblr, :layout => false
+end if development?
 
 not_found do
   haml :not_found

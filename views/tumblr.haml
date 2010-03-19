@@ -1,0 +1,114 @@
+!!!
+%html
+  %head
+    %title {block:SearchPage}Search results for "{SearchQuery}" - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}
+    
+    %link{:rel => 'alternative', :type => 'application/rss+xml', :href => '{RSS}'}
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
+    
+    - meta_tags.each do |name,content|
+      %meta{:name => name, :content => content}
+    
+    %link{:rel => 'shortcut icon', :href => '{Favicon}'}
+    {block:Description}
+    %meta{:name => 'description'}
+    {/block:Description}
+    
+    %link{:href => 'http://thelincolnshirepoacher.com/screen.css', :media => 'all', :rel => 'stylesheet', :type => 'text/css'}
+    %link{:href => '/print.css', :media => 'print', :rel => 'stylesheet', :type => 'text/css'}
+    
+    %script{:src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js', :type => 'text/javascript'}
+    %script{:src => '/js/raphael.js', :type => 'text/javascript'}
+    
+    = partial :typekit
+    = partial :google_analytics
+  %body
+    %header
+      %h1
+        %a{:href => '/'} {Title}
+        by The Lincolnshire Poacher
+    
+    #posts
+      {block:Posts}
+
+      {block:Text}
+      .post.text
+        %a.permalink{:href => '{Permalink}'} &sect;
+        {block:Title}
+        %h3 {Title}
+        {/block:Title}
+        {Body}
+      {/block:Text}
+
+      {block:Photo}
+      .post.photo
+        %a.permalink{:href => '{Permalink}'} &sect;
+        {LinkOpenTag}
+        %img{:alt => '{PhotoAlt}', :src => '{PhotoURL-400}'}
+        {LinkCloseTag}
+        {block:Caption}{Caption}{/block:Caption}
+      {/block:Photo}
+
+      {block:Quote}
+      .post.quote
+        %a.permalink{:href => '{Permalink}'} &sect;
+        .deco &#8220;
+        %blockquote {Quote}
+        {block:Source}
+        %cite {Source}
+        {/block:Source}
+      {/block:Quote}
+
+      {block:Link}
+      .post.link
+        %a.permalink{:href => '{Permalink}'} &sect;
+        %a.go{:href => '{URL}'} {Name}
+        {block:Description}{Description}{/block:Description}
+      {/block:Link}
+
+      {block:Chat}
+      .post.chat
+        %a.permalink{:href => '{Permalink}'} &sect;
+        {block:Title}
+        %h3 {Title}
+        {/block:Title}
+        %ol.conv
+          {block:Lines}
+          %li{:class => '{Alt}'}
+            {block:Label}
+            %b {Label}
+            {/block:Label}
+            {Line}
+          {/block:Lines}
+      {/block:Chat}
+
+      {block:Audio}
+      .post.audio
+        %a.permalink{:href => '{Permalink}'} &sect;
+        {AudioPlayerWhite}
+        {block:Caption}{Caption}{/block:Caption}
+      {/block:Audio}
+
+      {block:Video}
+      .post.video
+        %a.permalink{:href => '{Permalink}'} &sect;
+        {Video-500}
+        {block:Caption}{Caption}{/block:Caption}
+      {/block:Video}
+
+      {block:PostNotes}{PostNotes}{/block:PostNotes}
+
+      {/block:Posts}
+
+      {block:Pagination}
+      %nav
+        {block:PreviousPage}
+        %a.prev{:href => '{PreviousPage}'} Previous Page
+        {/block:PreviousPage}
+        {block:NextPage}
+        %a.next{:href => '{NextPage}'} Next Page
+        {/block:NextPage}
+      {/block:Pagination}
+    
+    %script{:src => 'http://thelincolnshirepoacher.com/js/codehighlighter.js', :type => 'text/javascript'}
+    %script{:src => 'http://thelincolnshirepoacher.com/poacher.js', :type => 'text/javascript'}

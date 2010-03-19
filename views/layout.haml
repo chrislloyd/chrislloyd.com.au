@@ -7,7 +7,10 @@
     
     - meta_tags.each do |name,content|
       %meta{:name => name, :content => content}
+      
+    %meta{:name => 'description', :content => "The Lincolnshire Poacher is a collection of articles written by Chris Lloyd about programming, technology & business. #{@article.try(:extract)}"}
     
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
     %link{:href => '/screen.css', :media => 'all', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => '/print.css', :media => 'print', :rel => 'stylesheet', :type => 'text/css'}
     
