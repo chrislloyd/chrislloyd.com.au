@@ -7,19 +7,23 @@ Array.prototype.pick: ->
 
 Art: {
   width: 960,
-  height: 1280,
+  height: 320,
   visibleWidth: 700
   visibleHeight: 320
   works: []
   colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633']
   draw: (paper) ->
+    paper.rect(0,0,@width,@height).attr({
+      fill: @colors.pick()
+      stroke: 'none'
+      opacity: Math.random()
+    }) if rand(5) == 0
     focus: {
       x: (@width-@visibleWidth)*0.5 + rand(@visibleWidth)
       y: (@height-@visibleHeight)*0.5 + rand(@visibleHeight)
     }
     for i in [0...4+rand(4)]
       @works[rand(@works.length)].call(paper, @colors.pick(), focus)
-
 }
 
 <% @artworks.each do |_,fn| %>
@@ -27,13 +31,15 @@ Art.works.push <%= fn %>
 <% end %>
 
 $(document).ready ->
+  frame: $('#frame')
   paper: Raphael 'art', Art.width, Art.height
+  canvas: $(paper.canvas)
+  canvas.css('marginTop', -(Art.height - frame.height()) * 0.5)
   Art.draw paper
 
-  reload: $('#frame a.reload')
-  tee: $('#frame a.tee')
+  reload: frame.find('a.reload')
 
   reload.click ->
-    $(paper.canvas).empty()
+    canvas.empty()
     Art.draw paper
     false
