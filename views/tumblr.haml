@@ -36,6 +36,10 @@
             top: 40px
           font-size: 14px
           
+          img, obj
+            border: none
+            padding-bottom: 5px
+          
           .post
             width: 400px
             color: #444
@@ -44,6 +48,9 @@
             
             .permalink
               display: none
+            
+            .invisilink a
+              border: none
             
             &.quote
               font-size: 18px
@@ -95,9 +102,10 @@
       {block:Photo}
       .post.photo
         %a.permalink{:href => '{Permalink}'} &sect;
-        {LinkOpenTag}
-        %img{:alt => '{PhotoAlt}', :src => '{PhotoURL-400}'}
-        {LinkCloseTag}
+        .invisilink
+          {LinkOpenTag}
+          %img{:alt => '{PhotoAlt}', :src => '{PhotoURL-400}'}
+          {LinkCloseTag}
         {block:Caption}{Caption}{/block:Caption}
       {/block:Photo}
 
