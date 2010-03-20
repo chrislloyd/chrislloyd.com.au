@@ -21,8 +21,8 @@
     %script{:src => 'http://thelincolnshirepoacher.com/js/raphael.js', :type => 'text/javascript'}
     %script{:src => 'http://thelincolnshirepoacher.com/js/jquery.masonry.min.js', :type => 'text/javascript'}
     :javascript
-      $(document).ready(function(){
-        $('#posts').masonry({
+      $(window).load(function(){
+        $('#posts').show().masonry({
           columnWidth: 480,
           singleMode: true
         });
@@ -87,7 +87,7 @@
     #frame.mini
       #art
     
-    #posts
+    #posts{hidden}
       {block:Posts}
 
       {block:Text}
