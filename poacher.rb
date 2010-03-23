@@ -127,7 +127,8 @@ post '/tee' do
 
   image = Magick::Image.from_blob(svg) do |input|
     input.background_color = 'none'
-    input.size = '2400x3200'
+    # input.size = '2400x3200'
+    input.density = '180x180'
     input.depth = 8
   end.first
   # image        = image.modulate(1.4,4)
@@ -135,7 +136,7 @@ post '/tee' do
 
   File.open('foo.png','w'){|f| f.write image.to_blob}
 
-  # return 'foo'.to_json
+  return '/people/chrislloyd/t-shirts/4868665-1-a-trophy'.to_json
 
   now = Time.now
   mech = Mechanize.new
@@ -151,22 +152,19 @@ post '/tee' do
   mech.get('http://redbubble.com/mybubble/clothing/new') do |tee_page|
 
     # Upload the image
-    foo = tee_page.form_with(:method => 'POST', :action => 'http://uploads.redbubble.com/work_images') do |form|
+    tee_page.form_with(:method => 'POST', :action => 'http://uploads.redbubble.com/work_images') do |form|
       field = form.file_uploads.first
-      field.file_name = 'foo.png'
+      field.file_name = 'poacher.png'
       field.file_data = image.to_blob
       field.mime_type = 'image/png'
-    end.submit.send(:html_body)
-
-    p foo
-    p foo.match(/onSuccess\((\d+),\s*(\d+)\)/)
+    end.submit.send(:html_body).match(/onSuccess\((\d+),\s*(\d+)\)/)
 
     # Get the background job number and filesize
     remote_work_image_key = $1.to_i
     remote_work_image_file_size = $2.to_i
 
     # Submit the details of the work
-    foo = tee_page.form_with(:method => 'POST', :action => '/mybubble/clothing') do |form|
+    tee_url = 'http://redbubble.com' + tee_page.form_with(:method => 'POST', :action => '/mybubble/clothing') do |form|
       form.field_with(:name => 'work[remote_work_image_key]').value = remote_work_image_key
       form.field_with(:name => 'work[remote_work_image_file_size]').value = remote_work_image_file_size
 
@@ -179,9 +177,7 @@ EOS
       form.field_with(:name => 'work[tag_field]').value = 'poacher, modernist, geometric, generative, random'
 
       form.field_with(:name => 'work[markup_percentage]').value = 0
-    end.submit
-    p foo
-    p foo.link_with(:text => 'Show public view')
+    end.submit.link_with(:text => 'Show public view').href
   end
 
   content_type :json
