@@ -6,6 +6,7 @@ rescue LoadError
 end
 
 Bundler.require :default
+require 'rmagick'
 
 configure do
   ENV['TZ'] = 'Australia/Sydney'
