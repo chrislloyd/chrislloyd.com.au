@@ -6,8 +6,6 @@ rescue LoadError
 end
 
 Bundler.require :default
-require 'rubygems'
-require 'RMagick'
 
 configure do
   ENV['TZ'] = 'Australia/Sydney'

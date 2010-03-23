@@ -5,7 +5,7 @@ gem 'haml', :require => ['haml', 'sass']
 gem 'rdiscount'
 gem 'sprockets'
 gem 'closure-compiler'
-# gem 'rmagick'
+gem 'rmagick'
 gem 'mechanize'
 gem 'json'
 

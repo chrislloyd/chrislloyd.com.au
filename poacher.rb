@@ -130,23 +130,19 @@ post '/tee' do
     input.size = '2400x3200'
     input.depth = 8
   end.first
-
-  # image.alpha Magick::ActivateAlphaChannel
-  image        = image.modulate(1.2)
+  # image        = image.modulate(1.4,4)
   image.format = 'PNG'
-  # 2400, 3200
-  # image.resize!(2400,3200)
 
   File.open('foo.png','w'){|f| f.write image.to_blob}
 
-  return 'foo'.to_json
+  # return 'foo'.to_json
 
-    now = Time.now
-    mech = Mechanize.new
+  now = Time.now
+  mech = Mechanize.new
 
-    tee_url = ''
+  tee_url = ''
 
-    # Login to RedBubble
+  # Login to RedBubble
   mech.get('http://redbubble.com/auth/login').form_with(:method => 'POST') do |form|
     form.field_with(:name => 'user[user_name]').value = ENV['REDBUBBLE_USER']
     form.field_with(:name => 'user[password]').value = ENV['REDBUBBLE_PASSWORD']
