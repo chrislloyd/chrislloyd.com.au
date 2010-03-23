@@ -2,12 +2,15 @@
   #art
   %a.reload{:href => '.', :title => 'Generate new artwork'} ↻
 
+%a#buy{:href => '#'} Wear this pattern
+  
+
 %nav
   %h2 Pages
   %ul
     - @pages.each do |p|
-      %li{:class => ('special' if p.special?)}
-        %a{:href => article_path(p), :title => p.title}= p.title
+      %li
+        %a{:href => page_path(p), :title => p.title}= p.title
 
 %nav
   %h2 Talks

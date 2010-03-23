@@ -1,9 +1,9 @@
 require 'init'
 
-require 'lib/article'
+require 'lib/page'
 require 'lib/numerals'
 
-Article.path = 'articles'
+Page.path = 'pages'
 
 class Object
   def try(method)
@@ -17,8 +17,8 @@ helpers do
     {:style => 'display:none;'}
   end
 
-  def article_path(article)
-    "/articles/#{article.slug}"
+  def page_path(page)
+    "/pages/#{page.slug}"
   end
 
   def partial(name, locals={})
@@ -30,20 +30,16 @@ helpers do
     html.gsub(' & '," <span class='amp'>&</span> ")
   end
 
-  def render_article(article)
-    haml(transform_ampersands(article.template), :layout => false)
+  def render_page(page)
+    haml(transform_ampersands(page.template), :layout => false)
   end
 
-  def current_article?(article)
-    @article == article
-  end
-
-  def article_title
+  def page_title
     base = 'The Lincolnshire Poacher by Chris Lloyd'
     if request.path == '/'
       base
     else
-        [@article.try(:title),base].compact.join(' &mdash; ')
+        [@page.try(:title),base].compact.join(' &mdash; ')
     end
   end
 
@@ -64,35 +60,43 @@ helpers do
                      :link_title => (opts[:link_title] || opts[:alt])
   end
 
+  def artworks
+    Dir['art/*.coffee'].inject({}) {|works, file|
+      works[File.basename(file,'.*')] = File.read(file)
+      works
+    }
+  end
+
 end
 
 before do
+  # Serve up yadis.xrdf to OpenID requests
   if request.path == '/' && !request.accept.grep('application/xrds+xml').empty?
     content_type 'application/xrds+xml'
     halt File.read(File.join(options.public,'yadis.xrdf'))
+
+  # Redirect all other domains to thelincolnshirepoacher.com
   elsif !(request.host =~ /thelincolnshirepoacher.com/)
-    path = 'http://thelincolnshirepoacher.com' + request.env['REQUEST_URI']
-    redirect path, 301
+    redirect "http://thelincolnshirepoacher.com#{request.env['REQUEST_URI']}", 301
   end
 end if production?
 
-
 get '/' do
-  @pages = Article.recent
+  @pages = Page.all
   haml :index
 end
 
-get '/articles/:slug/?' do |slug|
-  (@article = Article[slug]) ? haml(:article) : pass
-end
-
-# Legacy
-get '/post/:tumblr/:slug/?' do |tumblr, slug|
-  (@article = Article.find_from_tumblr(tumblr, slug)) ? redirect(article_path(@article), 301) : pass
+get '/pages/:slug/?' do |slug|
+  if @page = Page[slug]
+    etag @page.updated.to_i
+    haml(:page)
+  else
+    pass
+  end
 end
 
 get '/sitemap.xml' do
-  @articles = Article.recent
+  @pages = Page.all
   content_type 'application/xml'
   haml :sitemap, :layout => false
 end
@@ -100,20 +104,22 @@ end
 %w(screen print).each do |style|
   get "/#{style}.css" do
     content_type :css
-    sass File.read("public/sass/#{style}.sass")
+    path = "public/sass/#{style}.sass"
+    last_modified File.mtime(path)
+    sass File.read(path)
   end
 end
 
-get '/poacher.js' do
-  @artworks = Dir['art/*.coffee'].inject({}) {|works, file|
-    works[File.basename(file,'.*')] = File.read(file)
-    works
-  }
+get '/js/lib.js' do
   content_type 'text/javascript'
-  CoffeeScript.compile erb(:'art.coffee')
+  # cache Closure::Compiler.new.compile(
+  Sprockets::Secretary.new(
+    :root => "#{Dir.pwd}/vendor/js",
+    :source_files => ['coffee-script/extras/coffee-script.js']
+  ).concatenation.to_s
 end
 
-get '/tumblr' do
+get '/tumblr/?' do
   haml :tumblr, :layout => false
 end if development?
 

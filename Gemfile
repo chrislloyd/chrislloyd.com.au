@@ -3,7 +3,8 @@ source :gemcutter
 gem 'sinatra'
 gem 'haml', :require => ['haml', 'sass']
 gem 'rdiscount'
-gem 'coffee-script'
+gem 'sprockets'
+gem 'closure-compiler'
 
 group :development do
   gem 'shotgun'

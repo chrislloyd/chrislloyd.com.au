@@ -1,3 +1,5 @@
+alert 'foo'
+
 # Ruby rand
 rand: (n) ->
   Math.floor(Math.random()*n)
@@ -26,14 +28,11 @@ Art: {
       @works[rand(@works.length)].call(paper, @colors.pick(), focus)
 }
 
-<% @artworks.each do |_,fn| %>
-Art.works.push <%= fn %>
-<% end %>
-
 $(document).ready ->
   frame: $('#frame')
   paper: Raphael 'art', Art.width, Art.height
   canvas: $(paper.canvas)
+  buy: $('#buy')
   canvas.css('marginTop', -(Art.height - frame.height()) * 0.5)
   Art.draw paper
 
@@ -43,3 +42,6 @@ $(document).ready ->
     canvas.empty()
     Art.draw paper
     false
+
+  buy.click ->
+    canvas.css('zoom', 0.5)

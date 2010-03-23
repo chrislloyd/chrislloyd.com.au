@@ -1,5 +1,5 @@
 task :dev do
-  exec 'vendor/bin/shotgun --require init --server thin --host 127.0.0.1 --port 4567 poacher.rb'
+  exec 'bundle exec shotgun --require init --server thin --host 127.0.0.1 --port 4567 poacher.rb'
 end
 
 task :article do
