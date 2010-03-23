@@ -1,8 +1,6 @@
 require 'init'
 
 require 'lib/page'
-require 'lib/numerals'
-
 Page.path = 'pages'
 
 class Object
@@ -35,12 +33,9 @@ helpers do
   end
 
   def page_title
-    base = 'The Lincolnshire Poacher by Chris Lloyd'
-    if request.path == '/'
-      base
-    else
-        [@page.try(:title),base].compact.join(' &mdash; ')
-    end
+    title = ['The Lincolnshire Poacher by Chris Lloyd']
+    title.unshift(@page) unless request.path == '/'
+    title.join(' &mdash; ')
   end
 
   def meta_tags
@@ -60,6 +55,7 @@ helpers do
                      :link_title => (opts[:link_title] || opts[:alt])
   end
 
+  # Returns a hash so I can filter by name when debugging.
   def artworks
     Dir['art/*.coffee'].inject({}) {|works, file|
       works[File.basename(file,'.*')] = File.read(file)
@@ -68,6 +64,7 @@ helpers do
   end
 
 end
+
 
 before do
   # Serve up yadis.xrdf to OpenID requests
@@ -80,6 +77,7 @@ before do
     redirect "http://thelincolnshirepoacher.com#{request.env['REQUEST_URI']}", 301
   end
 end if production?
+
 
 get '/' do
   @pages = Page.all
@@ -112,10 +110,9 @@ end
 
 get '/js/lib.js' do
   content_type 'text/javascript'
-  # cache Closure::Compiler.new.compile(
   Sprockets::Secretary.new(
     :root => "#{Dir.pwd}/vendor/js",
-    :source_files => ['coffee-script/extras/coffee-script.js']
+    :source_files => ['coffee-script/extras/coffee-script.js', 'raphael/raphael.js']
   ).concatenation.to_s
 end
 

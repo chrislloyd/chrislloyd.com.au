@@ -1,4 +1,4 @@
-(color, focus) ->
+Art.add (color, focus) ->
   size: 50+rand(150)
   s: @set()
 

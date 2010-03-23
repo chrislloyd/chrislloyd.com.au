@@ -1,4 +1,4 @@
-(color) ->
+Art.add (color) ->
   size: 4 + rand(6)
   step: size + rand(size)
   opacity: Math.random()
