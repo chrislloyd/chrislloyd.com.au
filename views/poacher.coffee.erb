@@ -7,7 +7,7 @@ Array.prototype.pick: ->
 
 window.Art: Art: {
   width: 960,
-  height: 320,
+  height: 1280,
   visibleWidth: 700
   visibleHeight: 320
   works: []
@@ -34,18 +34,25 @@ for tag in document.getElementsByTagName('script') when tag.type is 'text/x-artw
 
 $(document).ready ->
   frame: $('#frame')
-  paper: Raphael 'art', Art.width, Art.height
-  canvas: $(paper.canvas)
-  buy: $('#buy')
-  canvas.css('marginTop', -(Art.height - frame.height()) * 0.5)
+  window.paper: paper: Raphael 'art', Art.width, Art.height
+  $(paper.canvas).css('marginTop', -(Art.height - frame.height()) * 0.5)
   Art.draw paper
 
-  reload: frame.find('a.reload')
-
-  reload.click ->
-    canvas.empty()
+  frame.find('a.reload').click ->
+    paper.clear()
     Art.draw paper
     false
 
-  buy.click ->
-    canvas.css('zoom', 0.5)
+  $('#buy').click ->
+    $.ajax {
+      type: 'POST'
+      url: '/tee'
+      data: $('#art')[0].innerHTML.toString()
+      contentType: 'image/svg+xml'
+      processData: false
+      format: 'json'
+      success: (data) ->
+        console.log data
+    }
+
+
