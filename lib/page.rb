@@ -7,11 +7,13 @@ class Page
   end
 
   def self.files
-    Dir["#{File.expand_path(@path)}/*.haml"]
+    Dir["#{File.expand_path(@path)}/*"]
   end
 
   def self.all
-    @all ||= files.collect {|f| new(f, File.read(f)) }.sort_by{|a| a.slug}
+    @all ||= files.
+      collect {|f| new(f) }.
+      sort_by{|a| a.slug}
   end
 
   def self.find_from_tumblr(tumblr, slug)
@@ -22,8 +24,8 @@ class Page
     all.find {|p| p.slug == slug }
   end
 
-  def initialize(path, contents)
-    @path, @template = path, contents
+  def initialize(path)
+    @path, @template = path, File.read(path)
   end
 
   def id
@@ -38,22 +40,11 @@ class Page
     File.mtime(path)
   end
 
-  [:title, :tumblr].each do |attr|
-    define_method(attr) { slot(attr) }
-  end
-
-# private
-
-  def self.date_regexp
-    /(\d+)-(\d+)-(\d+)\s(\d+):(\d+)/
-  end
-
-  def self.comment_regexp
-    /\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/
-  end
-
-  def slot(name)
-    template[/^-#\s+#{name}:\s*(.*)$/, 1].try(:strip)
+  def title
+    h1 = /^\s*(%h1|#)\s+/
+    template.split("\n").grep(h1).first.gsub(h1,'').strip
+  rescue
+    raise "No title for #{slug}"
   end
 
 end

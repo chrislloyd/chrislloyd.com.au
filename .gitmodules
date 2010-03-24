@@ -1,9 +1,0 @@
-[submodule "vendor/js/coffee-script"]
-	path = vendor/js/coffee-script
-	url = git://github.com/jashkenas/coffee-script.git
-[submodule "vendor/js/raphael"]
-	path = vendor/js/raphael
-	url = git://github.com/DmitryBaranovskiy/raphael.git
-[submodule "vendor/js/code-highlighter"]
-	path = vendor/js/code-highlighter
-	url = git://github.com/danwrong/code-highlighter.git

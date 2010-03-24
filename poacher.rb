@@ -24,12 +24,12 @@ helpers do
   end
 
   # TODO Implement in Javascript
-  def transform_ampersands(html)
-    html.gsub(' & '," <span class='amp'>&</span> ")
-  end
+  # def transform_ampersands(html)
+  #   html.gsub(' & '," <span class='amp'>&</span> ")
+  # end
 
   def render_page(page)
-    haml(transform_ampersands(page.template), :layout => false)
+    Tilt.new(page.path).render(self)
   end
 
   def page_title
