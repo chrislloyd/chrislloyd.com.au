@@ -1,3 +1,12 @@
+begin
+  require File.join(File.dirname(__FILE__), '.bundle', 'environment')
+rescue LoadError
+  require 'bundler'
+  Bundler.setup
+end
+
+Bundler.require :tools
+
 task :dev do
   exec 'bundle exec shotgun --require init --server thin --host 127.0.0.1 --port 4567 poacher.rb'
 end
@@ -14,4 +23,17 @@ task :page do
     EOF
   end
   system "#{ENV['EDITOR']} #{filename}"
+end
+
+task :buildjs do
+  require 'open-uri'
+  compiler = YUI::JavaScriptCompressor.new
+  js = [
+    'http://github.com/jashkenas/coffee-script/raw/master/extras/coffee-script.js',
+    'http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js'
+  ].map {|lib|
+    puts "Compiling #{lib}"
+    compiler.compress open(lib).read
+  }.join("\n")
+  File.open('public/libs.js','w'){|f| f.write(js)}
 end

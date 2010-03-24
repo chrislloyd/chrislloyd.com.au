@@ -5,7 +5,7 @@ rescue LoadError
   Bundler.setup
 end
 
-Bundler.require :default
+Bundler.require
 
 configure do
   ENV['TZ'] = 'Australia/Sydney'
