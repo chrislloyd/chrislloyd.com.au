@@ -108,14 +108,6 @@ end
   end
 end
 
-get '/js/lib.js' do
-  content_type 'text/javascript'
-  Sprockets::Secretary.new(
-    :root => "#{Dir.pwd}/vendor/js",
-    :source_files => ['coffee-script/extras/coffee-script.js', 'raphael/raphael.js']
-  ).concatenation.to_s
-end
-
 post '/tee' do
   content_type :json
 
