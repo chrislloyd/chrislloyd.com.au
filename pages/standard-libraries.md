@@ -5,11 +5,10 @@ Please excuse me for a moment while I lament a time when the beer was cold, the 
 One warm summers day, we (and by we, I mean [Myles](http://myles.id.au)) looked at Ruby's `File` class and created what seemed like a more “Ruby-ish” (object orientated) approach to file manipulation: [Fancypath](http://github.com/tred/fancypath). Every instance of `File.read` and `File.exist?` (there were many, as data was persisted to [Git](http://git-scm.com/)) was happily replaced with syntax like:
 
 <pre><code class=ruby>(__FILE__.to_path.dirname/'my_file').touch
-tmpdir.join('fax','request').exists?
-</code></pre>
+tmpdir.join('fax','request').exists?</code></pre>
 
 This seemed to make much more sense than the standard `File` class.
- 
+
 Soon after doing this however, we started getting “random” bugs in the code. Fancypath was subclassed from Pathname, an excellent but little known component of Ruby's standard library. As it turns out _some_ of Pathname's methods explicitly return `Pathname` instances rather than using the more generic `self.class.new`. This meant that our Fancypath objects would return Pathname objects only _some_ of the time and thereby made chaining unpredictable and difficult.
 
 Pathname's default behaviour was quickly overridden but the real problem here wasn't Pathname. Before I tell you what it _really_ was I'm going to offer some more evidence of its symptoms.

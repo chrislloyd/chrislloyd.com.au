@@ -43,10 +43,6 @@ $(document).ready ->
     Art.draw paper
     false
 
-  $('article *:contains(" &amp; ")').each ->
-    $(@).html (_, html) ->
-      html.replace ' &amp; ', ' <span class=ampersand>&amp;</span> '
-
   $('#buy').click ->
     $.ajax {
       type: 'POST'
