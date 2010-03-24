@@ -51,17 +51,3 @@ $(document).ready ->
     Art.clear()
     Art.draw()
     false
-
-  $('#buy').click ->
-    $.ajax {
-      type: 'POST'
-      url: '/tee'
-      data: $('#art')[0].innerHTML.toString()
-      contentType: 'image/svg+xml'
-      processData: false
-      format: 'json'
-      success: (data) ->
-        console.log data
-    }
-
-
