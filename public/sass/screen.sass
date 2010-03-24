@@ -56,24 +56,33 @@ header
   display: block
   overflow: hidden
   height: 320px
-  position: relative
-  
+  position: relative  
   width: 100%
   min-width = !width
   max-width = !full_width
   margin: 0 auto
     bottom: 40px
   
+  &.mini
+    height: 10px
+    margin-top: -10px / 2
+    background: #F9F9F9
+  
+  &.notfound
+    height: 200px
+  
   #art
     position: absolute
     left: 50%
+    top: 50%
     margin-left: -480px
     overflow: hidden
-    
-  &.mini
-    height: 10px
-    margin-bottom: 0
-    background: #F9F9F9
+    height: 320px
+    margin-top = -320px / 2
+  
+  &.notfound #art
+    height: 40px
+    margin-top: -20px
   
   a.reload
     position: absolute
