@@ -42,12 +42,12 @@ for tag in document.getElementsByTagName('script') when tag.type is 'text/x-artw
 $(document).ready ->
   frame: $('#frame')
   Art.visibleHeight: frame.height()
-  console.log Art.visibleHeight
   Art.paper: Raphael 'art', Art.width, Art.height
   Art.shift()
   Art.draw()
 
   frame.find('.reload').click ->
     Art.clear()
+    frame.find('.grain').css 'backgroundPosition', "${rand(100)}px ${rand(100)}px"
     Art.draw()
     false
