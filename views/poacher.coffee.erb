@@ -9,13 +9,20 @@ window.Art: Art: {
   width: 960,
   height: 1280,
   visibleWidth: 700
-  visibleHeight: 320
+
+  colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633']
+
   works: []
   add: (fn) ->
     @works.push fn
-  colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633']
-  draw: (paper) ->
-    @bg: paper.rect(0,0,@width,@height).attr({
+
+  shift: ->
+    $(@paper.canvas).css('marginTop', - (@height - @visibleHeight)*0.5)
+
+  clear: -> @paper.clear()
+
+  draw: ->
+    @bg: @paper.rect(0,0,@width,@height).attr({
       fill: @colors.pick()
       stroke: 'none'
       opacity: Math.random()
@@ -25,7 +32,7 @@ window.Art: Art: {
       y: (@height-@visibleHeight)*0.5 + rand(@visibleHeight)
     }
     for i in [0...4+rand(4)]
-      @works[rand(@works.length)].call(paper, @colors.pick(), focus)
+      @works[rand(@works.length)].call(@paper, @colors.pick(), focus)
 }
 
 # Forces evaluation
@@ -34,13 +41,15 @@ for tag in document.getElementsByTagName('script') when tag.type is 'text/x-artw
 
 $(document).ready ->
   frame: $('#frame')
-  window.paper: paper: Raphael 'art', Art.width, Art.height
-  $(paper.canvas).css('marginTop', -(Art.height - frame.height()) * 0.5)
-  Art.draw paper
+  Art.visibleHeight: frame.height()
+  console.log Art.visibleHeight
+  Art.paper: Raphael 'art', Art.width, Art.height
+  Art.shift()
+  Art.draw()
 
-  frame.find('a.reload').click ->
-    paper.clear()
-    Art.draw paper
+  frame.find('.reload').click ->
+    Art.clear()
+    Art.draw()
     false
 
   $('#buy').click ->

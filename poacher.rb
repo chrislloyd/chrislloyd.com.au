@@ -109,31 +109,22 @@ end
 end
 
 post '/tee' do
-  content_type :json
-
-  # puts request.body.read
+  # Add proper XML headers for ImageMagick
   svg = '<?xml version="1.0" standalone="no"?>
     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
-    "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'
-  svg += request.body.read
+    "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">' + request.body.read
 
+  # Create a PNG image from the SVG
   image = Magick::Image.from_blob(svg) do |input|
     input.background_color = 'none'
-    # input.size = '2400x3200'
     input.density = '180x180'
     input.depth = 8
   end.first
-  # image        = image.modulate(1.4,4)
   image.format = 'PNG'
 
-  File.open('foo.png','w'){|f| f.write image.to_blob}
-
-  return '/people/chrislloyd/t-shirts/4868665-1-a-trophy'.to_json
-
-  now = Time.now
   mech = Mechanize.new
-
-  tee_url = ''
+  now = Time.now
+  url = ''
 
   # Login to RedBubble
   mech.get('http://redbubble.com/auth/login').form_with(:method => 'POST') do |form|
@@ -156,7 +147,7 @@ post '/tee' do
     remote_work_image_file_size = $2.to_i
 
     # Submit the details of the work
-    tee_url = 'http://redbubble.com' + tee_page.form_with(:method => 'POST', :action => '/mybubble/clothing') do |form|
+    url = 'http://redbubble.com' + tee_page.form_with(:method => 'POST', :action => '/mybubble/clothing') do |form|
       form.field_with(:name => 'work[remote_work_image_key]').value = remote_work_image_key
       form.field_with(:name => 'work[remote_work_image_file_size]').value = remote_work_image_file_size
 
@@ -173,7 +164,7 @@ EOS
   end
 
   content_type :json
-  tee_url.to_json
+  url.to_json
 end
 
 get '/tumblr/?' do
