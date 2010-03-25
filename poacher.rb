@@ -55,12 +55,18 @@ helpers do
                      :link_title => (opts[:link_title] || opts[:alt])
   end
 
+  def coffee(view_name)
+    File.read(File.join(settings.views, "#{view_name}.coffee"))
+  end
+
   # Returns a hash so I can filter by name when debugging.
   def artworks
-    Dir['art/*.coffee'].inject({}) {|works, file|
-      works[File.basename(file,'.*')] = File.read(file)
-      works
-    }
+    Dir['art/*.coffee'].
+      map{|f| File.basename(f,'.*')}.
+      inject({}) {|works, file|
+        works[file] = coffee("../art/#{file}")
+        works
+      }
   end
 
 end
