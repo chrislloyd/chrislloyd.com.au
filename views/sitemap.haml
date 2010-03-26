@@ -4,12 +4,8 @@
     %loc http://thelincolnshirepoacher.com
     %priority 1.0
     %changefreq daily
-  %url
-    %loc http://thelincolnshirepoacher.com/colophon
-    %priority 0.8
-    %changefreq monthly
-  - @articles.each do |article|
+  - @pages.each do |page|
     %url
-      %loc== http://thelincolnshirepoacher.com#{article_path(article)}
+      %loc== http://thelincolnshirepoacher.com#{page_path(page)}
       %priority 0.6
       %changefreq monthly
