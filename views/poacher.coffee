@@ -49,5 +49,6 @@ $(document).ready ->
   frame.find('.reload').click ->
     Art.clear()
     frame.find('.grain').css 'backgroundPosition', "${rand(100)}px ${rand(100)}px"
+    _gaq.push ['_trackEvent', 'art', 'refreshed']
     Art.draw()
     false
