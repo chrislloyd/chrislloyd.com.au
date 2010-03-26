@@ -32,7 +32,6 @@ task :buildjs do
     'http://github.com/jashkenas/coffee-script/raw/master/extras/coffee-script.js',
     'http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js',
     'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
-    'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
     'http://github.com/danwrong/code-highlighter/raw/master/ruby.js',
     'http://github.com/danwrong/code-highlighter/raw/master/javascript.js'
   ].map {|lib|
