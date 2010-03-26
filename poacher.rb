@@ -3,12 +3,6 @@ require 'init'
 require 'lib/page'
 Page.path = 'pages'
 
-class Object
-  def try(method)
-    send method if respond_to? method
-  end
-end
-
 helpers do
 
   def hidden
@@ -22,11 +16,6 @@ helpers do
   def partial(name, locals={})
     haml "_#{name}".to_sym, :layout => false, :locals => locals
   end
-
-  # TODO Implement in Javascript
-  # def transform_ampersands(html)
-  #   html.gsub(' & '," <span class='amp'>&</span> ")
-  # end
 
   def render_page(page)
     Tilt.new(page.path).render(self)

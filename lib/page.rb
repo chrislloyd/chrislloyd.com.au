@@ -12,16 +12,16 @@ class Page
 
   def self.all
     @all ||= files.
-      collect {|f| new(f) }.
-      sort_by{|a| a.slug}
+      collect {|f| new(f)}.
+      sort_by {|a| a.slug}
   end
 
   def self.find_from_tumblr(tumblr, slug)
-    all.find {|a| a.slug == slug && a.tumblr == tumblr }
+    all.find {|a| a.slug == slug && a.tumblr == tumblr}
   end
 
   def self.[](slug)
-    all.find {|p| p.slug == slug }
+    all.find {|p| p.slug == slug}
   end
 
   def initialize(path)
