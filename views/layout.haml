@@ -3,7 +3,7 @@
   %head
     %title= page_title
     
-    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8'}
+    %meta{ 'charset' => 'utf-8'}
     
     - meta_tags.each do |name,content|
       %meta{:name => name, :content => content}
@@ -19,7 +19,9 @@
     
     = partial :typekit
     = partial :google_analytics if production?
-        
+    
+    /[if IE]
+      %script{:src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js', :type => 'text/javascript'}
   %body
     %header
       %h1
