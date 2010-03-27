@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] ||= 'development'
+
 begin
   require File.join(File.dirname(__FILE__), '.bundle', 'environment')
 rescue LoadError
@@ -5,12 +7,14 @@ rescue LoadError
   Bundler.setup
 end
 
-Bundler.require
+Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 configure do
-  ENV['TZ'] = 'Australia/Sydney'
-
   set :app_file => 'poacher.rb'
   set :haml => {:format => :html5}
   set :sass => {:load_paths => [File.join(Sinatra::Application.public,'sass')]}
+end
+
+configure :production do
+  ENV['APP_ROOT'] ||= File.dirname(__FILE__)
 end
