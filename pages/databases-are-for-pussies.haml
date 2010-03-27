@@ -18,23 +18,24 @@
 :markdown
   That is where [Tyrone](http://github.com/chrislloyd/tyrone) comes in. Tyrone is a code generator and library designed to help you get up and running designing UI mockups as quickly as possible. It's meant to motivate you to start your projects designing interactions rather than pushing code and making ORMs. Also, by using Sinatra, Tyrone can quickly help you create stuff like semi-dynamic JSON and then move onto a larger Rails project when it's needed. Just use the `tyrone` command to get started:
 
-  <pre><code class="shell">$ {gem,rip} install tyrone
-  $ tyrone my-new-app
+  <pre><code class="shell">$ gem install tyrone
+  $ mkdir my-new-app && cd my-new-app
+  $ tyrone init
   </code></pre>
 
-  It works just like the `rails` command (but better, I'll come to that later). This creates a new project with a skeleton Sinatra app and a few Javascript files. All bundled up nicely for instant deployment to [Heroku](http://heroku.com). You can then start by adding files to the `mockups` directory. Easy peasy.
+  It works just like the `rails` command. This creates a new project with a skeleton Sinatra app and a few Javascript files. All bundled up nicely for instant deployment to [Heroku](http://heroku.com). You can then start by adding files to the `mockups` directory. Easy peasy.
 
   Tyrone is opinionated. It comes with:
 
   1. A nice index page (for easy access)
   2. jQuery (as it is faster to code simple things than Prototype)
-  3. [Tim Lucas](http://toolmantim.com)' [states.js](http://github.com/toolmantim/states.js) (lovely inline prototyping)
+  3. [Tim Lucas](http://toolmantim.com)' [states.js](http://github.com/toolmantim/states.js) (lovely inline prototyping) and [Myles Byrne](http://myles.id.au)'s [grid.js](http://github.com/quackingduck/jquery.grid.js) (lovely grid overlays)
   4. An empty `features` directory (writing stories is a great way to define your app early)
   4. A HTML 5 reset stylesheet
 
   You _will_ use HTML 5 for your app. It's the way of the future and also includes nice [input attributes](http://dev.w3.org/html5/markup/input.text.html) (see `autofocus` and `placeholder`) which means you have to code less JS. If you absolutely _can't_ use it, backporting should be fairly trivial.
 
-  Tyrone is only built for initial prototyping: you should eventually switch to a fully fledged Rails app. That process shouldn't be too difficult as you now have user stories and HAML views all ready to go. The index page purposely limits the usefulness of Tyrone: when you want a custom index page, move to Rails. I worked on a project recently where we started with Sinatra for prototyping and had intended to move to Rails. However, when time started to slip away it seemed like too much hassle. We ended up replicating migrations, form helpers and even had a "controllers" directory. Alot more code was written than was needed (the app, however, was still awesome because we carefully prototyped the UI before implementing it).
+  Tyrone is only built for initial prototyping: you should eventually switch to a fully fledged Rails app. That process shouldn't be too difficult as you now have user stories and HAML views all ready to go. The index page purposely limits the usefulness of Tyrone: when you want a custom index page, it's a sign you should move to Rails. I worked on a project recently where we started with Sinatra for prototyping and had intended to move to Rails. However, when time started to slip away it seemed like too much hassle to switch. We ended up replicating migrations, form helpers and even had a "controllers" directory. A lot more code was written than was needed (the app, however, was still awesome because we carefully prototyped the UI before implementing it).
 
   Oh, and the name comes from [Tyrone's Dog Babysitting Service](http://dontevenreply.com/view.php?post=48). You can be sure that my boy Tyrone loves your UIs more than he loves dogs.
 
