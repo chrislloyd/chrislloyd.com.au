@@ -1,9 +1,7 @@
 # Ruby rand
-rand: (n) ->
-  Math.floor(Math.random()*n)
-
-Array.prototype.pick: ->
-  this[rand(@length)]
+rand: (n) -> Math.floor(Math.random()*n)
+Array.prototype.pick: -> @[rand(@length)]
+delay: (time, fn) -> setTimeout(fn, time)
 
 window.Art: Art: {
   width: 960,
@@ -41,12 +39,13 @@ for tag in document.getElementsByTagName('script') when tag.type is 'text/x-artw
 
 $(document).ready ->
   frame: $('#frame')
+  reload: frame.find('a.reload')
   Art.visibleHeight: frame.height()
   Art.paper: Raphael 'art', Art.width, Art.height
   Art.shift()
   Art.draw()
 
-  frame.find('.reload').click ->
+  reload.click ->
     Art.clear()
     frame.find('.grain').css 'backgroundPosition', "${rand(100)}px ${rand(100)}px"
     _gaq.push ['_trackEvent', 'art', 'refreshed']
