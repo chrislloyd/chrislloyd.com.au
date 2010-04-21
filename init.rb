@@ -3,6 +3,7 @@ ENV['RACK_ENV'] ||= 'development'
 begin
   require File.join(File.dirname(__FILE__), '.bundle', 'environment')
 rescue LoadError
+  require 'rubygems'
   require 'bundler'
   Bundler.setup
 end

@@ -1,5 +1,3 @@
-require 'init'
-
 require 'lib/page'
 Page.path = 'pages'
 
