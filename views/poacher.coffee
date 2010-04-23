@@ -5,7 +5,7 @@ delay: (time, fn) -> setTimeout(fn, time)
 
 window.Art: Art: {
   width: 960,
-  height: 1280,
+  height: 320,
   visibleWidth: 700
 
   colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633']
@@ -24,7 +24,7 @@ window.Art: Art: {
       fill: @colors.pick()
       stroke: 'none'
       opacity: Math.random()
-    }) if rand(2) == 0
+    })
     focus: {
       x: (@width-@visibleWidth)*0.5 + rand(@visibleWidth)
       y: (@height-@visibleHeight)*0.5 + rand(@visibleHeight)
