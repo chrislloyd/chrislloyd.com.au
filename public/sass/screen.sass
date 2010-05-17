@@ -1,46 +1,46 @@
 @import reset
 
-!gutter = 10px
-!full_width = 960px
-!width = 700px
+$gutter: 10px
+$full_width: 960px
+$width: 700px
 
-!colora = #06C
+$colora: #0066cc
 
 html
   overflow: auto
-  background: #FFF
+  background: white
 
 body
   font-size: 62.5%
   line-height: 2em
-  background: #FFF
+  background: white
   padding-bottom: 60px
 
 a
-  color: #06C
+  color: #0066cc
   text-decoration: none
-  border-bottom: 1px solid #CCC
+  border-bottom: 1px solid #cccccc
   &:visited
-    border-bottom-color: #EEE
+    border-bottom-color: #eeeeee
   &:hover
-    border-bottom-color: #06C
+    border-bottom-color: #0066cc
 
 header
-  width = !width
-  margin = 2*!gutter "auto" 0 "auto"
-  padding = !gutter 0
+  width: $width
+  margin: 2 * $gutter auto 0 auto
+  padding: $gutter 0
   h1
     font-size: 14px
     font-family: Times
     font-weight: normal
     letter-spacing: 0.1em
-    color: #CCC
+    color: #cccccc
     font-style: italic
     line-height: 100px
     a
       text-decoration: none
       text-transform: uppercase
-      color: #06C
+      color: #0066cc
       font-style: normal
       margin-right: 0.1em
 
@@ -48,21 +48,18 @@ header
   display: block
   overflow: hidden
   height: 320px
-  position: relative  
+  position: relative
   width: 100%
-  min-width = !width
-  max-width = !full_width
+  min-width: $width
+  max-width: $full_width
   margin: 0 auto
     bottom: 40px
-  
   &.mini
     height: 10px
-    margin-top = -10px / 2
-    background: #F9F9F9
-  
+    margin-top: (-10px / 2)
+    background: #f9f9f9
   &.notfound
-    height: 320px
-  
+    height: 310px
   #art
     position: absolute
     left: 50%
@@ -70,54 +67,21 @@ header
     margin-left: -480px
     overflow: hidden
     height: 320px
-    margin-top = -320px / 2
-  
+    margin-top: (-320px / 2)
+    border-bottom: 10px solid black
   &.notfound #art
     height: 40px
     margin-top: -20px
-  
   .grain
-    background: url('/images/grain.png')
+    background: url("/images/grain.png")
     position: absolute
     top: 0
     left: 0
     width: 100%
     height: 100%
-  
   &.notfound .grain
     top: 140px
     height: 40px
-  
-  a.reload
-    position: absolute
-    left: 50%
-    margin-left = (!width * 0.5) - !gutter - 20px
-    text-align: right
-    bottom = !gutter
-    line-height: 19px
-    font-size: 14px
-    font-weight: bold
-    color: #333
-    border: none
-    background: #FFF
-    padding-top: 1px
-    width: 20px
-    text-align: center
-    border-radius: 20px
-    -webkit-border-radius: 20px
-    -moz-border-radius: 20px
-    -webkit-transition-property: -webkit-transform, color
-    -webkit-transition-duration: 0.5s
-    -moz-transition-property: -moz-transform, color
-    -moz-transition-duration: 0.5s
-    box-shadow: 0 0 4px rgba(0,0,0,0.2)
-    -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.2)
-    -moz-box-shadow: 0 0 4px rgba(0,0,0,0.2)
-    &:hover
-      color = !colora
-      -webkit-transform: rotate(360deg) scale(1.2)
-      -moz-transform: rotate(360deg) scale(1.2)
-  
   .empty, .home
     position: absolute
     line-height: 100px
@@ -131,114 +95,139 @@ header
     border-radius: 50px
     -webkit-border-radius: 50px
     -moz-border-radius: 50px
-    box-shadow: 0 0 4px rgba(0,0,0,0.2)
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1)
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.2)
-    
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2)
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
   .empty
     background: black
     color: white
-    margin-left = -50px - 100px - !gutter
-
+    margin-left: -50px - 100px - $gutter
   a.home
     background: white
     color: black
-    margin-left = 50px + !gutter
+    margin-left: 50px + $gutter
     border: none
     &:hover
-      background = !colora
+      background: $colora
       color: white
 
+#refresh-art
+  height: 20px
+  background: url("/images/frame-shadow.png") top no-repeat
+  margin-top: -40px
+  padding: 10px 0
+  margin-bottom: 20px
+  &.mini
+    background-position: center -1px
+  a
+    line-height: 19px
+    font-size: 14px
+    font-weight: bold
+    color: white
+    border: none
+    background: #CCC
+    padding-top: 1px
+    width: 20px
+    text-align: center
+    width: 20px
+    position: absolute
+    left: 50%
+    margin-left: $width / 2 - 20px
+    border-radius: 20px
+    -webkit-border-radius: 20px
+    -moz-border-radius: 20px
+    -webkit-transition-property: -webkit-transform, background-color
+    -webkit-transition-duration: 0.5s
+    -moz-transition-property: -moz-transform, background-color
+    -moz-transition-duration: 0.5s
+    -o-transition-property: transform, background-color
+    -o-transition-duration: 0.5s
+    font-family: Helvetica, Arial, sans-serif
+    &:hover
+      background-color: #F33
+      -webkit-transform: rotate(360deg) scale(1.2)
+      -moz-transform: rotate(360deg) scale(1.2)
+      -o-transform: rotate(360deg) scale(1.2)
+
 @-moz-document url-prefix()
-  #frame a.reload
+  #refresh-art a
     padding:
-      top: 2px
+      top: 4px
       left: 2px
     line-height: 10px
-    height: 18px
+    height: 16px
     width: 18px
     font-size: 20px
     font-weight: normal
 
+
 article
   font-size: 13px
   line-height: 20px
-  color: #444
+  color: #444444
   outline-style: none
   outline-width: 0
-  width = !width
+  width: $width
   margin: 10px auto
   content
     width: 400px
     display: block
-
   h1
     font-size: 36px
     line-height: 40px
     margin: 40px 0
     font-weight: normal
-    color: #000
-    width = !width
-  
+    color: black
+    width: $width
   h2, h3, h4, h5, h6
-    color: #000
-  
+    color: black
   h2
     line-height: 20px
     margin: 20px 0
     text-transform: uppercase
     font-size: 15px
-
   p+p, p + figure:not(.wide) + p
     text-indent: 1.5em
-
   pre
     padding: 10px 0
-    
   ul,ol
-    margin = !gutter 0
+    margin: $gutter 0
   ol
     list-style: decimal
   ul
     list-style: circle
-  
   code
     font-size: 1.05em
-  
   figure
     width: 280px
     float: right
     margin-right: -300px
     clear: right
-    
     a
       border: none
       margin: 0
       padding: 0
-    
     &.wide
       float: none
-      margin = !gutter 0
-      width = !width
+      margin: $gutter 0
+      width: $width
     &.right
       text-align: right
-  
     .caption
-      margin = !gutter 0
+      margin: $gutter 0
       font-size: 12px
-      color: #999
-  
+      color: #999999
       a.credit
         display: block
         font-size: 10px
         text-transform: uppercase
         border: none
-        color = #69C
+        color: #6699cc
 
 code
   &.ruby
     .comment
-      color: #999
+      color: #999999
     .string
       color: #409b1c
     .keywords
@@ -246,13 +235,12 @@ code
     .entity
       color: #3b5bb5
     .variable
-      color: #999
+      color: #999999
     .constant
-      color: #999
-
+      color: #999999
   &.shell
     .prompt
-      color: #999
+      color: #999999
 
 nav
   display: block
@@ -264,7 +252,7 @@ nav
   padding: 10px 0
   font-size: 12px
   h2
-    color: #CCC
+    color: #cccccc
     font-size: 12px
     text-transform: uppercase
     float: left
@@ -275,7 +263,7 @@ nav
     li
       float: left
       margin-right: 10px
-      color: #DDD
+      color: #dddddd
       line-height: 20px
       font-size: 12px
       a
@@ -283,4 +271,4 @@ nav
         font-size: 12px
         text-decoration: none
       &.special:hover
-        color: #FF0
+        color: yellow

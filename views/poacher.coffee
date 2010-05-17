@@ -8,7 +8,7 @@ window.Art: Art: {
   height: 320,
   visibleWidth: 700
 
-  colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633']
+  colors: ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633', '#FF3333', '#3333FF']
 
   works: []
   add: (fn) ->
@@ -39,13 +39,13 @@ for tag in document.getElementsByTagName('script') when tag.type is 'text/x-artw
 
 $(document).ready ->
   frame: $('#frame')
-  reload: frame.find('a.reload')
+  refresh: $('#refresh-art')
   Art.visibleHeight: frame.height()
   Art.paper: Raphael 'art', Art.width, Art.height
   Art.shift()
   Art.draw()
 
-  reload.click ->
+  refresh.click ->
     Art.clear()
     frame.find('.grain').css 'backgroundPosition', "${rand(100)}px ${rand(100)}px"
     _gaq.push(['_trackEvent', 'art', 'refreshed']) if _gaq?

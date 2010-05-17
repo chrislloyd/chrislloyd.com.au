@@ -101,9 +101,17 @@ end
   end
 end
 
-get '/tumblr/?' do
-  haml :tumblr, :layout => false
-end if development?
+get '/_tumblr/?' do
+  template = File.read(File.join(settings.views, 'tumblr.haml'))
+  {
+    'block:Description' => '',
+    '/block:Description' => '',
+    'Title' => "The Poacher's Catch"
+
+  }.each {|from, to| template.gsub!("{#{from}}", to)} if development?
+
+  haml template, :layout => false
+end
 
 not_found do
   haml :not_found
