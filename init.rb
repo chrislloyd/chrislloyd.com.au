@@ -2,12 +2,16 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'rubygems'
 require 'bundler'
-Bundler.setup
+Bundler.setup ENV['RACK_ENV']
 
 require 'sinatra'
 require 'haml'
 require 'sass'
 require 'rdiscount'
+require 'sinatra/sequel'
+require 'json'
+
+require 'database'
 
 configure do
   set :app_file => 'poacher.rb'

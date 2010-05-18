@@ -1,4 +1,4 @@
-Art.add (color) ->
+Artist.add (color) ->
   step: 20 + rand(30)
   weight: 1 + rand(10)
   for i in [0..(@width+@height)] by step

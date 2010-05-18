@@ -1,4 +1,4 @@
-Art.add (color, focus) ->
+Artist.add (color, focus) ->
   size: 200 + rand(200)
   width: 1 + rand(3)
   step: 10 + rand(10)

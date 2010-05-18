@@ -1,4 +1,4 @@
-Art.add (color, focus) ->
+Artist.add (color, focus) ->
   min: 20
   max: 300
   for i in [0..rand(6)]

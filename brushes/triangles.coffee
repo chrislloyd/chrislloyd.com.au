@@ -1,4 +1,4 @@
-Art.add (color, focus) ->
+Artist.add (color, focus) ->
   size: 20 + rand(20)
   spacing: 60 + rand(20)
   distance: (x1,y1,x2,y2) ->

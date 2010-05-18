@@ -34,5 +34,5 @@
     = yield
     
     %script{:type => 'text/coffeescript'}= coffee(:poacher)
-    - artworks.each do |_, fn|
-      %script{:type => 'text/x-artwork'}= fn
+    - brushes.each do |_, fn|
+      %script{:type => 'text/x-brush'}= fn

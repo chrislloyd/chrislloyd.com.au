@@ -1,4 +1,4 @@
-Art.add (color) ->
+Artist.add (color) ->
   width: 300
   height: 300
   x: rand(@width*0.75) - (width*0.5)

@@ -1,5 +1,28 @@
 @import reset
 
+@-webkit-keyframes pulse
+  from
+    -webkit-transform: scale(1.4)
+    color: #F33
+  50%
+    -webkit-transform: scale(1)
+    color: #CCC
+  to
+    -webkit-transform: scale(1.4)
+    color: #F33
+
+@-webkit-keyframes shake
+  from
+    -webkit-transform: translateX(0)
+  25%
+    -webkit-transform: translateX(-2px)
+    -webkit-animation-easing-function: ease-in-out
+  75%
+    -webkit-transform: translateX(2px)
+    -webkit-animation-easing-function: ease-in-out
+  to
+    -webkit-transform: translateX(0)
+
 $gutter: 10px
 $full_width: 960px
 $width: 700px
@@ -111,46 +134,80 @@ header
       background: $colora
       color: white
 
-#refresh-art
+
+#art-options
   height: 20px
   background: url("/images/frame-shadow.png") top no-repeat
   margin-top: -40px
   padding: 10px 0
-  margin-bottom: 20px
+  display: block
+  overflow: hidden
+  position: relative
+  width: 100%
+  min-width: $width
+  max-width: $full_width
+  margin: 0 auto
+    top: -40px
+    bottom: 20px
   &.mini
     background-position: center -1px
   a
-    line-height: 19px
     font-size: 14px
     font-weight: bold
-    color: white
     border: none
-    background: #CCC
-    padding-top: 1px
     width: 20px
     text-align: center
-    width: 20px
     position: absolute
     left: 50%
-    margin-left: $width / 2 - 20px
-    border-radius: 20px
-    -webkit-border-radius: 20px
-    -moz-border-radius: 20px
-    -webkit-transition-property: -webkit-transform, background-color
+    line-height: 20px
+    -webkit-transition-property: -webkit-transform, background-color, color
     -webkit-transition-duration: 0.5s
-    -moz-transition-property: -moz-transform, background-color
+    -moz-transition-property: -moz-transform, background-color, color
     -moz-transition-duration: 0.5s
-    -o-transition-property: transform, background-color
+    -o-transition-property: transform, background-color, color
     -o-transition-duration: 0.5s
-    font-family: Helvetica, Arial, sans-serif
-    &:hover
-      background-color: #F33
-      -webkit-transform: rotate(360deg) scale(1.2)
-      -moz-transform: rotate(360deg) scale(1.2)
-      -o-transform: rotate(360deg) scale(1.2)
+    &.heart
+      color: #CCC
+      margin-left: ($width / 2) - 50px
+      font-size: 16px
+      &:hover
+        color: #F33
+        -webkit-transform: scale(1.4)
+        -moz-transform: scale(1.4)
+        -o-transform: scale(1.4)
+      &.hearting
+        color: rgba(#F33, 1)
+        -webkit-transform: scale(1)
+        -webkit-animation-name: pulse
+        -webkit-animation-duration: 1s
+        -webkit-animation-timing-function: ease-in-out
+        -webkit-animation-iteration-count: infinite
+      &.failed
+        -webkit-animation-name: shake
+        -webkit-animation-duration: 0.15s
+        -webkit-animation-iteration-count: 4
+        
+      &.hearted
+        color: #F33
+        
+    &.refresh
+      margin-left: ($width / 2) - 20px
+      line-height: 19px
+      color: white
+      background: #CCC
+      padding-top: 1px
+      border-radius: 20px
+      -webkit-border-radius: 20px
+      -moz-border-radius: 20px
+
+      &:hover
+        background-color: #F33
+        -webkit-transform: rotate(360deg) scale(1.2)
+        -moz-transform: rotate(360deg) scale(1.2)
+        -o-transform: rotate(360deg) scale(1.2)
 
 @-moz-document url-prefix()
-  #refresh-art a
+  #art-options a.refresh
     padding:
       top: 4px
       left: 2px
@@ -160,7 +217,6 @@ header
     font-size: 20px
     font-weight: normal
 
-
 article
   font-size: 13px
   line-height: 20px
@@ -169,6 +225,7 @@ article
   outline-width: 0
   width: $width
   margin: 10px auto
+  overflow: auto
   content
     width: 400px
     display: block
@@ -272,3 +329,42 @@ nav
         text-decoration: none
       &.special:hover
         color: yellow
+
+
+#hearts
+  content
+    width: !width
+  
+  .heart
+    overflow: hidden
+    position: relative
+    float: left
+    margin: 40px
+      bottom: 30px
+    height: 190px
+    
+    &:nth-child(3n)
+      margin-right: 0
+    &:nth-child(3n+1)
+      margin-left: 0
+    
+    .viewport
+      width: 180px
+      height: 180px
+      overflow: hidden
+      position: relative
+      
+      svg, vml
+        position: absolute
+    
+      .grain
+        background: url("/images/grain.png")
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+    .shadow
+      background: url("/images/frame-shadow-mini.png") bottom no-repeat
+      height: 10px
+      width: 100%

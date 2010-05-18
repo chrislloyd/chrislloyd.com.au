@@ -1,4 +1,5 @@
 require 'lib/page'
+require 'lib/heart'
 Page.path = 'pages'
 
 helpers do
@@ -47,13 +48,17 @@ helpers do
   end
 
   # Returns a hash so I can filter by name when debugging.
-  def artworks
-    Dir['art/*.coffee'].
+  def brushes
+    Dir['brushes/*.coffee'].
       map{|f| File.basename(f,'.*')}.
-      inject({}) {|works, file|
-        works[file] = coffee("../art/#{file}")
-        works
+      inject({}) {|b, file|
+        b[file] = coffee("../brushes/#{file}")
+        b
       }
+  end
+
+  def payload
+    @payload ||= JSON.parse(request.body.read)
   end
 
 end
@@ -84,6 +89,23 @@ get '/pages/:slug/?' do |slug|
   else
     pass
   end
+end
+
+get '/♥' do
+  @hearts = Heart.limit(36).order(:created_at.desc).all
+  haml :heart
+end
+
+post '/♥' do
+  content_type :json
+
+  json = payload['src'].delete("\n")
+
+  # Parse JSON for correctness.
+  # Remove \n from JSON.
+  @heart = Heart.create(:path => payload['path'], :src => payload['src'])
+
+  {:success => !@heart.nil?}.to_json
 end
 
 get '/sitemap.xml' do

@@ -1,0 +1,18 @@
+#frame.mini
+  #art
+  .grain
+
+#art-options.mini
+
+%article#hearts
+  %h1 Gallery
+
+  %content
+    - @hearts.each do |heart|
+      %div[heart]
+        .viewport
+          %script{:type => 'text/x-cereal-artwork'}
+            != heart.src
+          .grain
+        .shadow
+
