@@ -30,10 +30,11 @@ task :buildjs do
   compiler = YUI::JavaScriptCompressor.new
   js = [
     'http://github.com/jashkenas/coffee-script/raw/0.6.2/extras/coffee-script.js',
-    'http://github.com/DmitryBaranovskiy/raphael/raw/1.4.3/raphael.js',
+    'http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js',
     'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
     'http://github.com/danwrong/code-highlighter/raw/master/ruby.js',
-    'http://github.com/danwrong/code-highlighter/raw/master/javascript.js'
+    'http://github.com/danwrong/code-highlighter/raw/master/javascript.js',
+    'http://www.json.org/json2.js'
   ].map {|lib|
     puts "Compiling #{lib}"
     compiler.compress open(lib).read
