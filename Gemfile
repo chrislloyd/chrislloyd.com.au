@@ -5,7 +5,6 @@ gem 'haml', '>= 3'
 gem 'rdiscount'
 gem 'sequel'
 gem 'sinatra-sequel'
-gem 'sqlite3-ruby'
 gem 'json'
 
 group :tools do
