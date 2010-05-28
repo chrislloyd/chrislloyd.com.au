@@ -34,7 +34,7 @@ task :buildjs do
     'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
     'http://github.com/danwrong/code-highlighter/raw/master/ruby.js',
     'http://github.com/danwrong/code-highlighter/raw/master/javascript.js',
-    'http://www.json.org/json2.js'
+    'lib/json.js'
   ].map {|lib|
     puts "Compiling #{lib}"
     compiler.compress open(lib).read
