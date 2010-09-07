@@ -1,7 +1,7 @@
 source :gemcutter
 
 gem 'sinatra', '>= 1.0'
-gem 'haml', '>= 3'
+gem 'haml', '>= 3', :require => ['haml', 'sass']
 gem 'rdiscount'
 gem 'sequel'
 gem 'sinatra-sequel', :require => 'sinatra/sequel'
