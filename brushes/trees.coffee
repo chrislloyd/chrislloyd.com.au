@@ -1,8 +1,8 @@
 Artist.add (color) ->
-  width: 300
-  height: 300
-  x: rand(@width*0.75) - (width*0.5)
-  y: rand(@height*0.9) + (width*0.5)
+  width = 300
+  height = 300
+  x = rand(@width*0.75) - (width*0.5)
+  y = rand(@height*0.9) + (width*0.5)
   for i in [0..4]
     @rect(x, y-(i*80), width, height).attr({
       stroke: 'none'

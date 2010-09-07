@@ -25,19 +25,20 @@ task :page do
   system "#{ENV['EDITOR']} #{filename}"
 end
 
-task :buildjs do
+task 'public/libs.js' do |t|
   require 'open-uri'
   compiler = YUI::JavaScriptCompressor.new
   js = [
-    'http://github.com/jashkenas/coffee-script/raw/0.6.2/extras/coffee-script.js',
-    'http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js',
+    'http://github.com/jashkenas/coffee-script/raw/0.7.2/extras/coffee-script.js',
+    'http://github.com/DmitryBaranovskiy/raphael/raw/v1.4.7/raphael.js',
     'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
     'http://github.com/danwrong/code-highlighter/raw/master/ruby.js',
     'http://github.com/danwrong/code-highlighter/raw/master/javascript.js',
     'lib/json.js'
   ].map {|lib|
     puts "Compiling #{lib}"
-    compiler.compress open(lib).read
+    open(lib).read
+    # compiler.compress open(lib).read
   }.join("\n")
-  File.open('public/libs.js','w'){|f| f.write(js)}
+  File.open(t.name,'w'){|f| f.write(js)}
 end

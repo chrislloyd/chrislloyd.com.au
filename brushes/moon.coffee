@@ -1,7 +1,7 @@
 Artist.add (color) ->
-  radius: 350
+  radius = 350
   @circle(@width/2, rand(2*radius)-radius, radius).attr({
-    fill: color
-    stroke: 'none'
-    opacity: Math.random()
+    fill = color
+    stroke = 'none'
+    opacity = Math.random()
   })
