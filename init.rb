@@ -9,7 +9,7 @@ require './database'
 
 configure do
   set :app_file => 'poacher.rb'
-  set :haml => {:format => :html5}
+  set :haml => {:format => :html5, :encoding => 'utf-8'}
   set :sass => {:load_paths => [File.join(Sinatra::Application.public,'sass')]}
 end
 
