@@ -1,3 +1,3 @@
-require 'init'
-require 'poacher'
+require './init'
+require './poacher'
 run Sinatra::Application

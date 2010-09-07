@@ -1,5 +1,7 @@
-require 'lib/page'
-require 'lib/heart'
+# encoding: UTF-8
+
+require './lib/page'
+require './lib/heart'
 Page.path = 'pages'
 
 helpers do

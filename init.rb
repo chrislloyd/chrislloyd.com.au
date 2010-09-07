@@ -11,7 +11,7 @@ require 'rdiscount'
 require 'sinatra/sequel'
 require 'json'
 
-require 'database'
+require './database'
 
 configure do
   set :app_file => 'poacher.rb'

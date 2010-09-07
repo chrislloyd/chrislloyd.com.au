@@ -8,7 +8,7 @@ end
 Bundler.require :tools
 
 task :dev do
-  exec 'bundle exec shotgun --require init --server thin --host 127.0.0.1 --port 4567 poacher.rb'
+  exec 'bundle exec shotgun --require ./init --server thin --host 127.0.0.1 --port 4567'
 end
 
 task :page do
