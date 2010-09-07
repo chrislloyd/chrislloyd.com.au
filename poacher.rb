@@ -65,6 +65,10 @@ helpers do
 
 end
 
+before do
+  content_type :html, :charset => 'utf-8'
+end
+
 
 before do
   # Serve up yadis.xrdf to OpenID requests
@@ -99,7 +103,7 @@ get '/♥' do
 end
 
 post '/♥' do
-  content_type :json
+  content_type :json, :charset => 'utf-8'
 
   json = payload['src'].delete("\n")
 
@@ -112,13 +116,13 @@ end
 
 get '/sitemap.xml' do
   @pages = Page.all
-  content_type 'application/xml'
+  content_type 'application/xml', :charset => 'utf-8'
   haml :sitemap, :layout => false
 end
 
 %w(screen print).each do |style|
   get "/#{style}.css" do
-    content_type :css
+    content_type :css, :charset => 'utf-8'
     path = "public/sass/#{style}.sass"
     last_modified File.mtime(path)
     sass File.read(path)
