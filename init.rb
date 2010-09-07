@@ -2,14 +2,8 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'rubygems'
 require 'bundler'
-Bundler.setup ENV['RACK_ENV']
-
-require 'sinatra'
-require 'haml'
-require 'sass'
-require 'rdiscount'
-require 'sinatra/sequel'
-require 'json'
+Bundler.setup :default, ENV['RACK_ENV'].to_sym
+Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 require './database'
 
