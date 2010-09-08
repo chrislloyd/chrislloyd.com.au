@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# encoding: utf-8
 
 require './lib/page'
 require './lib/heart'
