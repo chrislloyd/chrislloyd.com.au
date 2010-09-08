@@ -4,7 +4,7 @@ gem 'sinatra', '>= 1.0'
 gem 'haml', '>= 3', :require => ['haml', 'sass']
 gem 'rdiscount'
 gem 'sequel'
-gem 'sinatra-sequel', :require => 'sinatra/sequel', :git => 'git://github.com/chrislloyd/sinatra-sequel.git'
+gem 'sinatra-sequel', :require => 'sinatra/sequel'
 gem 'json'
 
 group :tools do

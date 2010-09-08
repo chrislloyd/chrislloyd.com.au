@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require './lib/page'
 require './lib/heart'
 Page.path = 'pages'

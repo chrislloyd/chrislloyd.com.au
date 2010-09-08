@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 ENV['RACK_ENV'] ||= 'development'
 
 require 'rubygems'
@@ -10,6 +8,7 @@ Bundler.require :default, ENV['RACK_ENV'].to_sym
 require './database'
 
 configure do
+  # Hack until Sinatra 1.1
   Encoding.default_external = 'UTF-8' if String.new.respond_to?(:encoding)
 
   set :app_file => 'poacher.rb'

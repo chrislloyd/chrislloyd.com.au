@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 migration 'create the hearts table' do
   database.create_table :hearts do
     primary_key :id
