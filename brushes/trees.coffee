@@ -8,5 +8,4 @@ Artist.add (color) ->
       stroke: 'none'
       fill: color
       rotation: 45
-      opacity: (100 - (i*20))/100
     })

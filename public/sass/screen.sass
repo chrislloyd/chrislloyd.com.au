@@ -27,7 +27,7 @@ $gutter: 10px
 $full_width: 960px
 $width: 700px
 
-$colora: #0066cc
+$colora: #06C
 
 html
   overflow: auto
@@ -166,29 +166,6 @@ header
     -moz-transition-duration: 0.5s
     -o-transition-property: transform, background-color, color
     -o-transition-duration: 0.5s
-    &.heart
-      color: #CCC
-      margin-left: ($width / 2) - 50px
-      font-size: 16px
-      &:hover
-        color: #F33
-        -webkit-transform: scale(1.4)
-        -moz-transform: scale(1.4)
-        -o-transform: scale(1.4)
-      &.hearting
-        color: rgba(#F33, 1)
-        -webkit-transform: scale(1)
-        -webkit-animation-name: pulse
-        -webkit-animation-duration: 1s
-        -webkit-animation-timing-function: ease-in-out
-        -webkit-animation-iteration-count: infinite
-      &.failed
-        -webkit-animation-name: shake
-        -webkit-animation-duration: 0.15s
-        -webkit-animation-iteration-count: 4
-        
-      &.hearted
-        color: #F33
         
     &.refresh
       margin-left: ($width / 2) - 20px
@@ -225,7 +202,7 @@ article
   outline-width: 0
   width: $width
   margin: 10px auto
-  overflow: auto
+  //  overflow: auto
   content
     width: 400px
     display: block
@@ -246,9 +223,10 @@ article
   p+p, p + figure:not(.wide) + p
     text-indent: 1.5em
   pre
-    padding: 10px 0
+    padding: 2*$gutter 0
   ul,ol
-    margin: $gutter 0
+    margin: $gutter -2em
+    padding: 0 2em
   ol
     list-style: decimal
   ul
@@ -264,6 +242,8 @@ article
       border: none
       margin: 0
       padding: 0
+    img
+      margin-bottom: $gutter
     &.wide
       float: none
       margin: $gutter 0
@@ -271,7 +251,6 @@ article
     &.right
       text-align: right
     .caption
-      margin: $gutter 0
       font-size: 12px
       color: #999999
       a.credit
@@ -280,6 +259,12 @@ article
         text-transform: uppercase
         border: none
         color: #6699cc
+        margin-bottom: $gutter
+  .ceveat
+    margin-bottom: $gutter
+    padding-bottom: $gutter
+    border-bottom: 1px solid #EEE
+    
 
 code
   &.ruby
@@ -298,6 +283,17 @@ code
   &.shell
     .prompt
       color: #999999
+  &.javascript
+    .comment
+      color: #999
+    .brackets
+      color: #333
+    .string
+      color: #693
+    .keywords
+      color: $colora
+    .global
+      color: #F33
 
 nav
   display: block
@@ -329,42 +325,3 @@ nav
         text-decoration: none
       &.special:hover
         color: yellow
-
-
-#hearts
-  content
-    width: !width
-  
-  .heart
-    overflow: hidden
-    position: relative
-    float: left
-    margin: 40px
-      bottom: 30px
-    height: 190px
-    
-    &:nth-child(3n)
-      margin-right: 0
-    &:nth-child(3n+1)
-      margin-left: 0
-    
-    .viewport
-      width: 180px
-      height: 180px
-      overflow: hidden
-      position: relative
-      
-      svg, vml
-        position: absolute
-    
-      .grain
-        background: url("/images/grain.png")
-        position: absolute
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
-    .shadow
-      background: url("/images/frame-shadow-mini.png") bottom no-repeat
-      height: 10px
-      width: 100%

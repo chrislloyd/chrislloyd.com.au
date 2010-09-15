@@ -5,4 +5,5 @@ Artist.add (color, focus) ->
     @circle(focus.x - max*0.5 + rand(max),
             focus.y - max*0.5 + rand(max), min + rand(max - min)).attr({
               stroke: color
+              'stroke-width': 1 + rand(10)
             })

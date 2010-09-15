@@ -4,6 +4,11 @@
 
 = figure 'metalpoint.png', :alt => 'Metalpoint'
 
+.ceveat
+  :markdown
+    **Ceveat:** _Metalpoint was written before Raphaël supported drag-and-drop, plugins or native SVG curve syntax. Now that these features are baked in, Metalpoint is trivial. Checkout Dmitry's [curver demo](http://raphaeljs.com/curver.html) for a recent implementation of the same idea._
+
+
 :markdown
   A tool to help draw and compose vector images in SVG and VML.
 
@@ -14,5 +19,3 @@
   * Get the UI working well. This may mean moving to canvas for speed, but I'm going to have to go to HTML5 anyway.
 
   At the moment there is a small Sinatra app running the code, but all it is doing is processing HAML. There is, however, a static demo in `public/demo.html`. You can check out [the source on GitHub](http://github.com/chrislloyd/metalpoint).
-  
-  **Update:** _Metalpoint was written before Raphaël supported drag-and-drop, plugins or native SVG curve syntax. Now that these features are baked in, Metalpoint is trivial. Checkout Dmitry's [curver demo](http://raphaeljs.com/curver.html) for a recent implementation of the same idea._

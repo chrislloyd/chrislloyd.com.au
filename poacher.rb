@@ -97,23 +97,6 @@ get '/pages/:slug/?' do |slug|
   end
 end
 
-get '/♥' do
-  @hearts = Heart.limit(36).order(:created_at.desc).all
-  haml :heart
-end
-
-post '/♥' do
-  content_type :json, :charset => 'utf-8'
-
-  json = payload['src'].delete("\n")
-
-  # Parse JSON for correctness.
-  # Remove \n from JSON.
-  @heart = Heart.create(:path => payload['path'], :src => payload['src'])
-
-  {:success => !@heart.nil?}.to_json
-end
-
 get '/sitemap.xml' do
   @pages = Page.all
   content_type 'application/xml', :charset => 'utf-8'

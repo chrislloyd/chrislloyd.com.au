@@ -10,5 +10,4 @@ Artist.add (color, focus) ->
       @path("M".concat(x, ",", y, "m0-", size * 0.58, "l", size * 0.5, ",", size * 0.87, "-", size, ",0z")).attr({
         fill: color
         stroke: 'none'
-        opacity: opacity
       })

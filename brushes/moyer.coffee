@@ -8,5 +8,5 @@ Artist.add (color, focus) ->
     y = c.y + (focus.y - c.y)*(1 - (i/size))
     @circle(x, y, i).attr({
       stroke: color
-      'stroke-width': width
+      'stroke-width': 1 + rand(4)
     })

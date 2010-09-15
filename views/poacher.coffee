@@ -21,22 +21,23 @@ window.Artist = class Artist
       top:  -0.5 * (@height - @visibleHeight)
     }
 
-  colors = ['#FFFFFF', '#9900CC', '#0066CC', '#FFFF00', '#33CC99', '#FF6633', '#FF3333', '#3333FF']
+  backgrounds = ['#EEE', '#036']
+  colors = ['#FFF', '#06C', '#F33', '#003']
 
   clear = ->
     @paper.clear()
 
   draw = ->
+    console.log @backgrounds.pick()
     @bg = @paper.rect(0,0,@width,@height).attr({
-      fill: @colors.pick()
+      fill: @backgrounds.pick()
       stroke: 'none'
-      opacity: Math.random()
     })
     focus = {
       x: (@width-@visibleWidth)*0.5 + rand(@visibleWidth)
       y: (@height-@visibleHeight)*0.5 + rand(@visibleHeight)
     }
-    for i in [0...4+rand(4)]
+    for i in [0...1+rand(3)]
       @constructor.brushes.pick().call(@paper, @colors.pick(), focus)
 
   # Tail recursive
@@ -72,32 +73,13 @@ $(document).ready ->
   heart.bind 'webkitAnimationEnd', ->
     heart.removeClass('failed')
 
-  heart.click ->
-    return false if heart.hasClass('hearted')
-    src = JSON.stringify art.serialize()
-
-    heart.addClass('hearting')
-    $.ajax {
-      contentType: 'application/json'
-      data: JSON.stringify({path: window.location.pathname, src: src})
-      dataType: 'json'
-      type: 'POST'
-      url: '/♥'
-      complete: ->
-        heart.removeClass('hearting')
-      success: ->
-        heart.addClass('hearted')
-        _gaq.push(['_trackEvent', 'art', 'hearted']) if _gaq?
-      error: ->
-        heart.addClass('failed')
-    }
-    false
-
   refresh.click ->
     return false if heart.hasClass('hearting') or heart.hasClass('failed')
     art.clear()
     heart.removeClass('hearted').removeClass('failed')
-    frame.find('.grain').css 'backgroundPosition', "${rand(100)}px ${rand(100)}px"
+    # For those reading along at home, if the grain doesn't move and you get
+    # two similar images in a row it looks like a static overlay.
+    frame.find('.grain').css 'backgroundPosition', "#{rand(100)}px #{rand(100)}px"
     _gaq.push(['_trackEvent', 'art', 'refreshed']) if _gaq?
     art.draw()
     false

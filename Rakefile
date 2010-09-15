@@ -30,7 +30,7 @@ task 'public/libs.js' do |t|
   compiler = YUI::JavaScriptCompressor.new
   js = [
     'http://github.com/jashkenas/coffee-script/raw/0.7.2/extras/coffee-script.js',
-    'http://github.com/DmitryBaranovskiy/raphael/raw/v1.4.7/raphael.js',
+    'http://github.com/DmitryBaranovskiy/raphael/raw/master/raphael.js',
     'http://github.com/danwrong/code-highlighter/raw/master/code_highlighter.js',
     'http://github.com/danwrong/code-highlighter/raw/master/ruby.js',
     'http://github.com/danwrong/code-highlighter/raw/master/javascript.js',
